@@ -1,0 +1,83 @@
+body {
+
+	background-color: darksalmon;
+}
+
+header {
+
+	background-color: palegreen;
+	height: 5%;
+	width: 100%;
+	text-align: center;
+	margin-top: -21px;
+}
+
+header h1 {
+
+	padding-top: 2%;
+}
+
+section aside {
+
+	background-color: red;
+	width: 40%;
+	height: 100%;
+	border-radius: 5%;
+}
+
+section aside h2 {
+
+	color:white;
+	text-align: center;
+	text-decoration: underline;
+}
+
+section aside ul {
+
+	background-color: white;
+	width: 35%;
+	text-align: center;
+	list-style: none;
+	padding: 10px 10px 20px 10px;
+	margin: 10px 10px 10px 150px;
+	text-align: center;
+}
+
+section aside ul li {
+
+	padding-top: 25px;
+}
+
+section aside ul li a {
+
+	text-decoration: none;
+	font-size: 1.2em;
+	color: black;
+}
+
+article {
+
+	float:right;
+	background-color: red;
+	width: 40%;
+	height: 100%;
+	margin-right: 10%;
+	border-radius: 5%;
+}
+
+article h1 {
+
+	color: white;
+	text-align: center;
+}
+
+section article a {
+
+	text-align: center;
+}
+
+section article  table {
+
+	margin: 0 auto;
+	text-align: center;
+}
