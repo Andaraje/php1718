@@ -1,0 +1,45 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Tutoria
+ *
+ * @ORM\Table(name="tutoria", indexes={@ORM\Index(name="fk_Tutoria_Profesor1_idx", columns={"Profesor_DNI"})})
+ * @ORM\Entity
+ */
+class Tutoria
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="Fecha", type="date", nullable=false)
+     */
+    private $fecha;
+
+    /**
+     * @var \Profesor
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="Profesor")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Profesor_DNI", referencedColumnName="DNI")
+     * })
+     */
+    private $profesorDni;
+
+
+}
+

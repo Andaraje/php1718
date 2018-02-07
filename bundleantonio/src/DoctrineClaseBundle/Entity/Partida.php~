@@ -1,0 +1,50 @@
+<?php
+
+namespace DoctrineClaseBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Partida
+ *
+ * @ORM\Table(name="partida", indexes={@ORM\Index(name="fk_partida_jugador_idx", columns={"jugador_email"})})
+ * @ORM\Entity
+ */
+class Partida
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idPartida", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idpartida;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="Fecha", type="date", nullable=false)
+     */
+    private $fecha;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="Puntos", type="integer", nullable=false)
+     */
+    private $puntos;
+
+    /**
+     * @var \Jugador
+     *
+     * @ORM\ManyToOne(targetEntity="Jugador")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="jugador_email", referencedColumnName="email")
+     * })
+     */
+    private $jugadorEmail;
+
+
+}
+

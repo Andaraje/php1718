@@ -1,0 +1,54 @@
+<?php
+
+namespace DoctrineClaseBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Producto
+ *
+ * @ORM\Table(name="producto")
+ * @ORM\Entity
+ */
+class Producto
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idProducto", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idproducto;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Descripcion", type="string", length=250, nullable=false)
+     */
+    private $descripcion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Imagen", type="blob", nullable=true)
+     */
+    private $imagen;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Jugador", mappedBy="productoproducto")
+     */
+    private $jugadorEmail;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->jugadorEmail = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}
+

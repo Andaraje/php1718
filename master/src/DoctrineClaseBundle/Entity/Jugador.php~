@@ -1,0 +1,55 @@
+<?php
+
+namespace DoctrineClaseBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Jugador
+ *
+ * @ORM\Table(name="jugador")
+ * @ORM\Entity
+ */
+class Jugador
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=50, nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $email;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="password", type="string", length=16, nullable=false)
+     */
+    private $password;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Producto", inversedBy="jugadorEmail")
+     * @ORM\JoinTable(name="jugador_has_producto",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="jugador_email", referencedColumnName="email")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="producto_idProducto", referencedColumnName="idProducto")
+     *   }
+     * )
+     */
+    private $productoproducto;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->productoproducto = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}
+

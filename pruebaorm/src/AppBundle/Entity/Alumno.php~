@@ -1,0 +1,83 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Alumno
+ *
+ * @ORM\Table(name="alumno", uniqueConstraints={@ORM\UniqueConstraint(name="DNI_UNIQUE", columns={"DNI"})})
+ * @ORM\Entity
+ */
+class Alumno
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="DNI", type="string", length=9, nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $dni;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Nombre", type="string", length=45, nullable=false)
+     */
+    private $nombre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Apellido1", type="string", length=45, nullable=false)
+     */
+    private $apellido1;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Apellido2", type="string", length=45, nullable=false)
+     */
+    private $apellido2;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Correo", type="string", length=45, nullable=false)
+     */
+    private $correo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Contrasenya", type="string", length=45, nullable=false)
+     */
+    private $contrasenya;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Profesor", inversedBy="alumnoDni")
+     * @ORM\JoinTable(name="alumno_has_profesor",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="Alumno_DNI", referencedColumnName="DNI")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="Profesor_DNI", referencedColumnName="DNI")
+     *   }
+     * )
+     */
+    private $profesorDni;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->profesorDni = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}
+

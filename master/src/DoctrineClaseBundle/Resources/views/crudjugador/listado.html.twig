@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+<p class="alert">Listado de Jugadores</p>
+<hr>
+<br>
+<a href="{{url("nuevo_crudjugador")}}">Nuevo jugador</a>
+<table class="table">
+    <tr>
+        <td>Email</td>
+        <td>Contraseña</td>
+        <td>Acciones</td>
+    </tr>
+    {% for jugador in jugadoresvista %}
+        <tr>
+            <td>{{jugador.email}}</td>
+            <td>{{jugador.password}}</td>
+            <td><a href="{{url("editar_crudjugador",{"email":jugador.email})}}">Editar</a></td>
+            <td><a href="{{url("borrar_crudjugador",{"email":jugador.email})}}">Borrar</a></td>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %}

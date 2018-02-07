@@ -1,0 +1,4 @@
+services:
+#    doctrine_clase.example:
+#        class: DoctrineClaseBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

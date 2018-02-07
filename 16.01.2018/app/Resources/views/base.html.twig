@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="stylesheet" 
+        href="{{ asset("bootstrap/css/bootstrap.min.css")}}">
+        {% block hojasestilos %}{% endblock %}
+        <script src="{{ asset("bootstrap/js/bootstrap.min.js")}}"></script>
+    </head>
+    <body class="container">
+        <header>
+            <div class="alert alert-primary">Título Aplicación</div>
+        </header>
+        <nav>
+            <a href="">Inicio</a>
+        </nav>
+        {% block body %}
+        <p>Este es el body padre</p>
+        {% endblock %}
+        {% block pie %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

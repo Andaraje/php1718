@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+{% block hojasestilos %}
+<link rel="stylesheet" href="{{asset("css/estilos.css")}}">
+{% endblock %}
+{% block body %}
+{{ parent() }}
+<p>El login ha sido válido</p>
+{#<p>Nombre: {{ nombre }}</p>
+}<p>Edad: {{ Edad }}</p>#}
+{% for dia in diassemana %}
+   <p>Dia: {{ dia }}</p> 
+{% endfor %}
+<a href="{{ path('homepage')}}">Inicio</a>
+{% endblock %}
+{% block pie %}Este es el pie mio{% endblock %}
+

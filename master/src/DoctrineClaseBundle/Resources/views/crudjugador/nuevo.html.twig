@@ -1,0 +1,6 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+{{form_start(formulario,{attr:{novalidate:'novalidate'}})}}
+{{form_widget(formulario)}}
+{{form_end(formulario)}}
+{% endblock %}

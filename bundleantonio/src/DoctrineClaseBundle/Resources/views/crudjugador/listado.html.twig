@@ -1,0 +1,13 @@
+<p>Listado de Jugadores</p>
+<table>
+    <tr>
+        <td>Email</td>
+        <td>Contraseña</td>
+    </tr>
+    {% for jugador in jugadoresvista %}
+        <tr>
+            <td>{{jugador.email}}</td>
+            <td>{{jugador.password}}</td>
+        </tr>
+    {% endfor %}
+</table>

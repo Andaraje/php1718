@@ -1,0 +1,61 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Item
+ *
+ * @ORM\Table(name="item")
+ * @ORM\Entity
+ */
+class Item
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Nombre", type="string", length=45, nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $nombre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Descripcion", type="string", length=45, nullable=false)
+     */
+    private $descripcion;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="Peso", type="integer", nullable=false)
+     */
+    private $peso;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="Estado", type="boolean", nullable=false)
+     */
+    private $estado = '0';
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Proyecto", mappedBy="itemNombre")
+     */
+    private $proyectoNombre;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->proyectoNombre = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}
+
