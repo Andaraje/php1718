@@ -663,7 +663,7 @@ i:before {
   line-height: 35px;
   border: none;
   font-size: 14px;
-  color: #333333;
+  color: #f70606;
   font-family: "Poppins", sans-serif;
   font-weight: 600;
   display: block;
@@ -1349,9 +1349,20 @@ i:before {
   -o-transition: all 400ms linear 0s;
   transition: all 400ms linear 0s;
   display: block;
-  color: #6f6f6f;
+  color: red;
   font-family: "Montserrat", sans-serif;
   text-align: left;
+}
+ .dropdown-menu .usermenu a{
+  background-color: white;
+  display:block;
+  width: 100%;
+  border-style:none;
+  color:black;
+}
+.dropdown-menu .usermenu a:hover{
+  background-color:white;
+  color:#d91522;
 }
 
 .offcanvas_menu .nav li.side_menu .dropdown-menu li a:before {
@@ -5957,7 +5968,7 @@ i:before {
 
 .l_p_categories_widget .navbar-nav li.dropdown .dropdown-menu li a {
   color: #999999;
-  border-color: #eaeaea;
+  border-color: black;
 }
 
 .l_p_categories_widget .navbar-nav li.dropdown .dropdown-menu li:last-child a {

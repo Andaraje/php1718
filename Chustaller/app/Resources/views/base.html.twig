@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+
+        {% block header %}
+        <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8" />
@@ -39,7 +41,6 @@
         <link href="{{asset('css/responsive.css')}}" rel="stylesheet">
     </head>
     <body>
-        {% block header %}
             <!--================Top Header Area =================-->
     <div class="header_top_area">
         <div class="container">
@@ -56,6 +57,7 @@
                         </div>
                     </div>
                 </div>
+                
                 <div class="col-lg-6">
                     <div class="top_header_middle">
                         <a href="#"><i class="fa fa-phone"></i> Llama al: <span>+34 671 767 693</span></a>
@@ -63,22 +65,23 @@
                         <img src="{{asset('img/logo.png')}}" alt="">
                     </div>
                 </div>
-                <div class="col-lg-3">
-                    <div class="top_right_header">
-                        <ul class="header_social">
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                            <li><a href="#"><i class="fa fa-youtube-play"></i></a></li>
-                        </ul>
-                        <ul class="top_right">
-                            <li class="user"><a href="#"><i class="icon-user icons"></i></a></li>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="col-lg-3 ">
+                    <div class="top_right_header collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="top_right navbar-nav">
+                            <li class="user nav-item dropdown submenu"><a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><i class="icon-user icons"></i></a>
+                                    <ul class="dropdown-menu">
+                                        {# Categorias de todas las piezas #}
+                                        
+                                            <li class="usermenu"><a  href="{{url('perfil')}}">Mi cuenta</a></li>
+                                    </ul>
+                            </li>
                             <li class="cart"><a href="#"><i class="icon-handbag icons"></i></a></li>
                             
                         </ul>
                     </div>
                 </div>
+            </nav>
             </div>
         </div>
     </div>

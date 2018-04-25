@@ -3,14 +3,17 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Serializable;
 
 /**
  * User
  *
- * @ORM\Table(name="user")
+ * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="username_UNIQUE", columns={"username"}), @ORM\UniqueConstraint(name="email_UNIQUE", columns={"email"})})
  * @ORM\Entity
  */
-class User
+class User implements UserInterface, Serializable
 {
     /**
      * @var integer
@@ -24,21 +27,23 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="username", type="string", length=50, nullable=false)
+     * @ORM\Column(name="username", type="string", length=25, nullable=true)
      */
     private $username;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="password", type="string", length=300, nullable=false)
+     * @ORM\Column(name="password", type="string", length=64, nullable=true)
+     * @Assert\NotBlank()
      */
     private $password;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=320, nullable=false)
+     * @ORM\Column(name="email", type="string", length=60, unique=true)
+     * @Assert\NotBlank()
      */
     private $email;
 
@@ -52,13 +57,13 @@ class User
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Rol", inversedBy="user")
+     * @ORM\ManyToMany(targetEntity="Rol", inversedBy="user", fetch="EAGER")
      * @ORM\JoinTable(name="user_has_rol",
      *   joinColumns={
-     *     @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     *     @ORM\JoinColumn(name="User_id", referencedColumnName="id")
      *   },
      *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="rol_id", referencedColumnName="id")
+     *     @ORM\JoinColumn(name="Rol_id", referencedColumnName="id")
      *   }
      * )
      */
@@ -69,6 +74,7 @@ class User
      */
     public function __construct()
     {
+        $this->isActive=true;
         $this->rol = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -164,7 +170,7 @@ class User
      */
     public function setIsactive($isactive)
     {
-        $this->isactive = $isactive;
+        $this->isactive = true;
 
         return $this;
     }
@@ -212,4 +218,44 @@ class User
     {
         return $this->rol;
     }
+    public function getRoles()
+    {
+        $roles=array();
+        foreach ($this->rol as $rl) {
+            $roles[]=$rl->getRol();
+        }
+        return $roles;
+    }
+    public function getSalt()
+    {
+        return null;   
+    }
+    public function eraseCredentials()
+    {
+    }
+
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt,
+        ));
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt
+        ) = unserialize($serialized);
+    }
+
 }

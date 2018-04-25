@@ -29,7 +29,7 @@ class IndexController extends Controller
         return $this->render("default/index.html.twig", ["ultimos"=>$po]);
     }
     /**
-     * @Route("/buscar/{nombre}", name="busqueda")
+     * @Route("/Buscar/{nombre}", name="busqueda")
      */
     public function busquedaAction(Request $request, $nombre)
     {
