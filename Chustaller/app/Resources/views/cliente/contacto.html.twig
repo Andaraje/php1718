@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{{ parent() }}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css"/>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
+<script src="{{asset('js/contacto.js')}}"></script>
+<div class='container'>
+{% for label, flashes in app.session.flashbag.all %}
+    {% for flash in flashes %}
+        <div class="alert alert-{{ label }}">
+            {{ flash }}
+        </div>
+    {% endfor %}
+{% endfor %}
+<div class="contact_form_inner">
+{{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'contact_us_form row' , 'id':'contactForm'}}) }}
+{{ form_widget(form) }}
+{{ form_end(form) }}
+</div>
+</div>
+{% endblock %}

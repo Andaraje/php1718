@@ -1,0 +1,109 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Articulos
+ *
+ * @ORM\Table(name="articulos", indexes={@ORM\Index(name="fk_articulos_combustible1_idx", columns={"combustible_nombre"}), @ORM\Index(name="fk_articulos_categoria1_idx", columns={"categoria_id"})})
+ * @ORM\Entity
+ */
+class Articulos
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombre", type="string", length=150, nullable=false)
+     */
+    private $nombre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="descripcion", type="text", length=65535, nullable=true)
+     */
+    private $descripcion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="marca", type="string", length=45, nullable=false)
+     */
+    private $marca;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="modelo", type="string", length=45, nullable=false)
+     */
+    private $modelo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cilindrada", type="string", length=45, nullable=false)
+     */
+    private $cilindrada;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="cantidad", type="integer", nullable=true)
+     */
+    private $cantidad;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="imagen", type="string", length=100, nullable=true)
+     */
+    private $imagen;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="precio", type="float", precision=10, scale=0, nullable=false)
+     */
+    private $precio;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="vecescomprado", type="integer", nullable=true)
+     */
+    private $vecescomprado = '0';
+
+    /**
+     * @var \Categoria
+     *
+     * @ORM\ManyToOne(targetEntity="Categoria")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="categoria_id", referencedColumnName="id")
+     * })
+     */
+    private $categoria;
+
+    /**
+     * @var \Combustible
+     *
+     * @ORM\ManyToOne(targetEntity="Combustible")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="combustible_nombre", referencedColumnName="nombre")
+     * })
+     */
+    private $combustibleNombre;
+
+
+}
+

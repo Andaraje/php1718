@@ -1,0 +1,102 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Cliente
+ *
+ * @ORM\Table(name="cliente", indexes={@ORM\Index(name="fk_cliente_user1_idx", columns={"user_id"}), @ORM\Index(name="fk_cliente_municipios1_idx", columns={"municipios_id"})})
+ * @ORM\Entity
+ */
+class Cliente
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="dni", type="string", length=9, nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $dni;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombre", type="string", length=45, nullable=false)
+     */
+    private $nombre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="primer_apellido", type="string", length=70, nullable=false)
+     */
+    private $primerApellido;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="segundo_apellido", type="string", length=70, nullable=false)
+     */
+    private $segundoApellido;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telefono", type="string", length=45, nullable=false)
+     */
+    private $telefono;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="calle", type="string", length=45, nullable=false)
+     */
+    private $calle;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="numero", type="string", length=45, nullable=false)
+     */
+    private $numero;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="piso", type="string", length=10, nullable=true)
+     */
+    private $piso;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="puerta", type="string", length=45, nullable=true)
+     */
+    private $puerta;
+
+    /**
+     * @var \Municipios
+     *
+     * @ORM\ManyToOne(targetEntity="Municipios")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="municipios_id", referencedColumnName="id")
+     * })
+     */
+    private $municipios;
+
+    /**
+     * @var \User
+     *
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * })
+     */
+    private $user;
+
+
+}
+

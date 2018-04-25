@@ -1,0 +1,71 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Hilo
+ *
+ * @ORM\Table(name="hilo", indexes={@ORM\Index(name="fk_hilo_cliente1_idx", columns={"cliente_dni"})})
+ * @ORM\Entity
+ */
+class Hilo
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="titulo", type="string", length=100, nullable=false)
+     */
+    private $titulo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="mensaje", type="text", length=65535, nullable=true)
+     */
+    private $mensaje;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fecha", type="datetime", nullable=false)
+     */
+    private $fecha;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="respuestas", type="integer", nullable=false)
+     */
+    private $respuestas = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="identificador", type="integer", nullable=false)
+     */
+    private $identificador;
+
+    /**
+     * @var \Cliente
+     *
+     * @ORM\ManyToOne(targetEntity="Cliente")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="cliente_dni", referencedColumnName="dni")
+     * })
+     */
+    private $clienteDni;
+
+
+}
+
