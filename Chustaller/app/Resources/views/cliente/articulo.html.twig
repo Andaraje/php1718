@@ -3,53 +3,58 @@
     {{parent()}}
 
     <div class="container">
+        {% if articulo != null %}
         <div class="row">
-            <div class="col-lg-4">
-                <img src="{{asset('' ~ articulo.imagen ~ '')}}" alt="{{articulo.nombre}}">
-            </div>
-            <div class="col-lg-8">
-                <div class="product_details_text">
-                    <h3>{{articulo.nombre}}</h3>
-                    <ul class="p_rating">
-                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                    </ul>
-                    <div class="add_review">
-                        <a href="#">5 Reviews</a>
-                        <a href="#">Add your review</a>
-                    </div>
-                    <h6>Disponibilidad
-                    {% if articulo.cantidad > 1 %}
-                    <span>Stock</span>
-                    {% else %}
-                    <span class="rojo">Agotado</span>
-                    {% endif %} </h6>
-                    <h4>{{articulo.precio}}€</h4>
-                    <p> {{articulo.descripcion}}</p>
-                    
-                    <div class="quantity">
-                        <div class="custom">
-                            <button class="reduced items-count" type="button"><i class="icon_minus-06"></i></button>
-                            <input type="text" name="qty" id="sst" maxlength="12" value="01" title="Quantity:" class="input-text qty">
-                            <button class="increase items-count" type="button"><i class="icon_plus"></i></button>
-                        </div>
-                        <a class="add_cart_btn" href="#">Añadir al carrito</a>
-                    </div>
-                    <div class="shareing_icon">
-                        <h5>Compartir :</h5>
-                        <ul>
-                            <li><a href="#"><i class="social_facebook"></i></a></li>
-                            <li><a href="#"><i class="social_twitter"></i></a></li>
-                            <li><a href="#"><i class="social_pinterest"></i></a></li>
-                            <li><a href="#"><i class="social_instagram"></i></a></li>
-                            <li><a href="#"><i class="social_youtube"></i></a></li>
+                <div class="col-lg-4">
+                    <img src="{{asset('' ~ articulo.imagen ~ '')}}" alt="{{articulo.nombre}}">
+                </div>
+                <div class="col-lg-8">
+                    <div class="product_details_text">
+                        <h3>{{articulo.nombre}}</h3>
+                        <ul class="p_rating">
+                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                            <li><a href="#"><i class="fa fa-star"></i></a></li>
                         </ul>
+                        <div class="add_review">
+                            <a href="#">5 Reviews</a>
+                            <a href="#">Add your review</a>
+                        </div>
+                        <h6>Disponibilidad
+                        {% if articulo.cantidad > 1 %}
+                        <span>Stock</span>
+                        {% else %}
+                        <span class="rojo">Agotado</span>
+                        {% endif %} </h6>
+                        <h4>{{articulo.precio}}€</h4>
+                        <p> {{articulo.descripcion}}</p>
+                        
+                        <div class="quantity">
+                            <div class="custom">
+                                <button class="reduced items-count" type="button"><i class="icon_minus-06"></i></button>
+                                <input type="text" name="qty" id="sst" maxlength="12" value="01" title="Quantity:" class="input-text qty">
+                                <button class="increase items-count" type="button"><i class="icon_plus"></i></button>
+                            </div>
+                            <a class="add_cart_btn" href="#">Añadir al carrito</a>
+                        </div>
+                        <div class="shareing_icon">
+                            <h5>Compartir :</h5>
+                            <ul>
+                                <li><a href="#"><i class="social_facebook"></i></a></li>
+                                <li><a href="#"><i class="social_twitter"></i></a></li>
+                                <li><a href="#"><i class="social_pinterest"></i></a></li>
+                                <li><a href="#"><i class="social_instagram"></i></a></li>
+                                <li><a href="#"><i class="social_youtube"></i></a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        {% else %}
+            <p>No existe este articulo</p>
+        {% endif %}
+        
     </div>
 {% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'admin/baseadmin.html.twig' %}
+
+
+{% block containerfluid %}
+    
+
+    
+
+    <h1>Lista de Clientes</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Idcliente</th>
+                <th>Dni</th>
+                <th>Nombre</th>
+                <th>Primerapellido</th>
+                <th>Segundoapellido</th>
+                <th>Telefono</th>
+                <th>Calle</th>
+                <th>Numero</th>
+                <th>Piso</th>
+                <th>Email</th>
+                <th>Poblacion</th>
+                <th>Provincia</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cliente in clientes %}
+            <tr>
+                <td>{{ cliente.idcliente }}</td>
+                <td>{{ cliente.dni }}</td>
+                <td>{{ cliente.nombre }}</td>
+                <td>{{ cliente.primerApellido }}</td>
+                <td>{{ cliente.segundoApellido }}</td>
+                <td>{{ cliente.telefono }}</td>
+                <td>{{ cliente.calle }}</td>
+                <td>{{ cliente.numero }}</td>
+                <td>{{ cliente.piso }}</td>
+                <td>{{ cliente.email }}</td>
+                <td>{{ cliente.poblacionpoblacion }}</td>
+                <td>{{ cliente.poblacionpoblacion.provinciaprovincia }}</td>
+                <td>
+                    <a href="{{ path('cliente_edit', { 'idcliente': cliente.idcliente }) }}">Editar</a>
+                    <a href="{{ path('cliente_delete', { 'idcliente': cliente.idcliente }) }}">Borrar</a>
+                </td>
+                
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% endblock containerfluid %}
+

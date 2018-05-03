@@ -50,7 +50,13 @@ class ContactController extends Controller
                 return $this->redirect($this->generateUrl('contact'));
             }
         }
-
-        return $this->render('cliente/contacto.html.twig', ["form"=> $form->createView()]);
+        if($this->getUser()==null){
+            return $this->render('cliente/contacto.html.twig', ["form"=> $form->createView()]);
+        }else{
+            $dni=$this->getUser()->getUsername();// el id del usuario logeado
+            $usu = $this->getDoctrine()->getRepository('AppBundle\Entity\Cliente')->findOneBy(array('email' => $dni));
+            return $this->render('cliente/contacto.html.twig', ["form"=> $form->createView(), 'user'=>$usu]);
+        }
+        
     }
 }

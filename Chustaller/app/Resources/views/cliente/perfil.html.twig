@@ -1,11 +1,15 @@
 {% extends 'base.html.twig' %}
 {% block body %}
 {{ parent() }}
+<div class="container">
 <div class="solid_banner_inner">
-        <h3>Contact</h3>
+        <h3>Mi cuenta</h3>
         <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li>Hola, {{user.nombre}}, {{user.primerApellido}} {{user.segundoApellido}}</li><br>
+            <h4><a href="contact.html">Información personal</a></h4><br>
+            <h4><a href="contact.html">Mis pedidos</a></h4><br>
+            <h4><a href="contact.html">Mis facturas</a></h4>
         </ul>
     </div>
+</div>
 {% endblock %}

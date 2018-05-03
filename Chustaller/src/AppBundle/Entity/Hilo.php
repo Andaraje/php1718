@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Hilo
  *
- * @ORM\Table(name="hilo", indexes={@ORM\Index(name="fk_hilo_cliente1_idx", columns={"cliente_dni"})})
+ * @ORM\Table(name="hilo", indexes={@ORM\Index(name="fk_hilo_cliente1_idx", columns={"cliente_idcliente"})})
  * @ORM\Entity
  */
 class Hilo
@@ -61,10 +61,10 @@ class Hilo
      *
      * @ORM\ManyToOne(targetEntity="Cliente")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="cliente_dni", referencedColumnName="dni")
+     *   @ORM\JoinColumn(name="cliente_idcliente", referencedColumnName="idcliente")
      * })
      */
-    private $clienteDni;
+    private $clientecliente;
 
 
 
@@ -199,26 +199,26 @@ class Hilo
     }
 
     /**
-     * Set clienteDni
+     * Set clientecliente
      *
-     * @param \AppBundle\Entity\Cliente $clienteDni
+     * @param \AppBundle\Entity\Cliente $clientecliente
      *
      * @return Hilo
      */
-    public function setClienteDni(\AppBundle\Entity\Cliente $clienteDni = null)
+    public function setClientecliente(\AppBundle\Entity\Cliente $clientecliente = null)
     {
-        $this->clienteDni = $clienteDni;
+        $this->clientecliente = $clientecliente;
 
         return $this;
     }
 
     /**
-     * Get clienteDni
+     * Get clientecliente
      *
      * @return \AppBundle\Entity\Cliente
      */
-    public function getClienteDni()
+    public function getClientecliente()
     {
-        return $this->clienteDni;
+        return $this->clientecliente;
     }
 }

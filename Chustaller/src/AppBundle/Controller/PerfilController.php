@@ -28,6 +28,6 @@ class PerfilController extends Controller
         ->setParameter('user_id',$dni)
         ->getQuery();
         $cliente= $qb->getSingleResult();
-        return $this->render('cliente/perfil.html.twig',['usuario'=>$cliente,'user'=>$usu]);
+        return $this->render('cliente/perfil.html.twig',['user'=>$cliente,'cliente'=>$usu]);
     }
 }

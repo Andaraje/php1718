@@ -1,0 +1,22 @@
+{% extends 'admin/baseadmin.html.twig' %}
+
+    {% block containerfluid %}
+    <table id="resultado">
+        <thead class="header">
+            <tr>
+                <th>ip</th>
+                <th>Fecha</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for visita in visitas %}
+            <tr>
+                <td>{{visita.ip}}</td>
+                <td>{{visita.fecha}}</td>  
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endblock %}
+    

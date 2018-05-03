@@ -7,17 +7,24 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Cliente
  *
- * @ORM\Table(name="cliente", indexes={@ORM\Index(name="fk_cliente_user1_idx", columns={"user_id"}), @ORM\Index(name="fk_cliente_municipios1_idx", columns={"municipios_id"})})
+ * @ORM\Table(name="cliente", indexes={@ORM\Index(name="fk_cliente_user1_idx", columns={"user_id"}), @ORM\Index(name="fk_cliente_poblacion1_idx", columns={"poblacion_idpoblacion"})})
  * @ORM\Entity
  */
 class Cliente
 {
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="idcliente", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idcliente;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="dni", type="string", length=9, nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $dni;
 
@@ -73,19 +80,19 @@ class Cliente
     /**
      * @var string
      *
-     * @ORM\Column(name="puerta", type="string", length=45, nullable=true)
+     * @ORM\Column(name="email", type="string", length=500, nullable=true)
      */
-    private $puerta;
+    private $email;
 
     /**
-     * @var \Municipios
+     * @var \Poblacion
      *
-     * @ORM\ManyToOne(targetEntity="Municipios")
+     * @ORM\ManyToOne(targetEntity="Poblacion")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="municipios_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="poblacion_idpoblacion", referencedColumnName="idpoblacion")
      * })
      */
-    private $municipios;
+    private $poblacionpoblacion;
 
     /**
      * @var \User
@@ -98,6 +105,30 @@ class Cliente
     private $user;
 
 
+
+    /**
+     * Get idcliente
+     *
+     * @return integer
+     */
+    public function getIdcliente()
+    {
+        return $this->idcliente;
+    }
+
+    /**
+     * Set dni
+     *
+     * @param string $dni
+     *
+     * @return Cliente
+     */
+    public function setDni($dni)
+    {
+        $this->dni = $dni;
+
+        return $this;
+    }
 
     /**
      * Get dni
@@ -278,51 +309,51 @@ class Cliente
     }
 
     /**
-     * Set puerta
+     * Set email
      *
-     * @param string $puerta
+     * @param string $email
      *
      * @return Cliente
      */
-    public function setPuerta($puerta)
+    public function setEmail($email)
     {
-        $this->puerta = $puerta;
+        $this->email = $email;
 
         return $this;
     }
 
     /**
-     * Get puerta
+     * Get email
      *
      * @return string
      */
-    public function getPuerta()
+    public function getEmail()
     {
-        return $this->puerta;
+        return $this->email;
     }
 
     /**
-     * Set municipios
+     * Set poblacionpoblacion
      *
-     * @param \AppBundle\Entity\Municipios $municipios
+     * @param \AppBundle\Entity\Poblacion $poblacionpoblacion
      *
      * @return Cliente
      */
-    public function setMunicipios(\AppBundle\Entity\Municipios $municipios = null)
+    public function setPoblacionpoblacion(\AppBundle\Entity\Poblacion $poblacionpoblacion = null)
     {
-        $this->municipios = $municipios;
+        $this->poblacionpoblacion = $poblacionpoblacion;
 
         return $this;
     }
 
     /**
-     * Get municipios
+     * Get poblacionpoblacion
      *
-     * @return \AppBundle\Entity\Municipios
+     * @return \AppBundle\Entity\Poblacion
      */
-    public function getMunicipios()
+    public function getPoblacionpoblacion()
     {
-        return $this->municipios;
+        return $this->poblacionpoblacion;
     }
 
     /**

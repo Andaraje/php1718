@@ -72,8 +72,15 @@
                             <li class="user nav-item dropdown submenu"><a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><i class="icon-user icons"></i></a>
                                     <ul class="dropdown-menu">
                                         {# Categorias de todas las piezas #}
-                                        
-                                            <li class="usermenu"><a  href="{{url('perfil')}}">Mi cuenta</a></li>
+                                        {% if user is defined %}
+                                        <li class="usermenu"><a  href="{{url('perfil')}}">Bienvenido {{user.nombre}}</a></li>
+                                        <li class="usermenu"><a  href="{{path('logout')}}">Cerrar Sesión</a></li>
+                                        {% else %}
+                                        <li class="usermenu"><a  href="{{url('perfil')}}">Registrate o Inicia sesión</a></li>
+                                        {% endif %}
+                                            
+                                            
+                                            
                                     </ul>
                             </li>
                             <li class="cart"><a href="#"><i class="icon-handbag icons"></i></a></li>

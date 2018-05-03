@@ -78,13 +78,6 @@ class Articulos
     private $precio;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="vecescomprado", type="integer", nullable=true)
-     */
-    private $vecescomprado = '0';
-
-    /**
      * @var \Categoria
      *
      * @ORM\ManyToOne(targetEntity="Categoria")
@@ -306,30 +299,6 @@ class Articulos
     public function getPrecio()
     {
         return $this->precio;
-    }
-
-    /**
-     * Set vecescomprado
-     *
-     * @param integer $vecescomprado
-     *
-     * @return Articulos
-     */
-    public function setVecescomprado($vecescomprado)
-    {
-        $this->vecescomprado = $vecescomprado;
-
-        return $this;
-    }
-
-    /**
-     * Get vecescomprado
-     *
-     * @return integer
-     */
-    public function getVecescomprado()
-    {
-        return $this->vecescomprado;
     }
 
     /**

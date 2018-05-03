@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Factura
  *
- * @ORM\Table(name="factura", indexes={@ORM\Index(name="fk_articulos_has_cliente_cliente1_idx", columns={"cliente_dni"}), @ORM\Index(name="fk_articulos_has_cliente_articulos1_idx", columns={"articulos_id"})})
+ * @ORM\Table(name="factura", indexes={@ORM\Index(name="fk_articulos_has_cliente_articulos1_idx", columns={"articulos_id"}), @ORM\Index(name="fk_factura_cliente1_idx", columns={"cliente_idcliente"})})
  * @ORM\Entity
  */
 class Factura
@@ -50,10 +50,10 @@ class Factura
      *
      * @ORM\ManyToOne(targetEntity="Cliente")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="cliente_dni", referencedColumnName="dni")
+     *   @ORM\JoinColumn(name="cliente_idcliente", referencedColumnName="idcliente")
      * })
      */
-    private $clienteDni;
+    private $clientecliente;
 
 
 
@@ -140,26 +140,26 @@ class Factura
     }
 
     /**
-     * Set clienteDni
+     * Set clientecliente
      *
-     * @param \AppBundle\Entity\Cliente $clienteDni
+     * @param \AppBundle\Entity\Cliente $clientecliente
      *
      * @return Factura
      */
-    public function setClienteDni(\AppBundle\Entity\Cliente $clienteDni = null)
+    public function setClientecliente(\AppBundle\Entity\Cliente $clientecliente = null)
     {
-        $this->clienteDni = $clienteDni;
+        $this->clientecliente = $clientecliente;
 
         return $this;
     }
 
     /**
-     * Get clienteDni
+     * Get clientecliente
      *
      * @return \AppBundle\Entity\Cliente
      */
-    public function getClienteDni()
+    public function getClientecliente()
     {
-        return $this->clienteDni;
+        return $this->clientecliente;
     }
 }

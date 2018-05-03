@@ -78,13 +78,6 @@ class Articulos
     private $precio;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="vecescomprado", type="integer", nullable=true)
-     */
-    private $vecescomprado = '0';
-
-    /**
      * @var \Categoria
      *
      * @ORM\ManyToOne(targetEntity="Categoria")

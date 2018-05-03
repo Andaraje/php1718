@@ -18,6 +18,13 @@ class ArticuloController extends Controller
      */
     public function categoriasAction(Request $request, $id){
         $Articulo=$this->getDoctrine()->getRepository("AppBundle\Entity\Articulos")->find($id);
-        return $this->render("cliente/articulo.html.twig", ["articulo"=>$Articulo]);
+        if($this->getUser()==null){
+            return $this->render("cliente/articulo.html.twig", ["articulo"=>$Articulo]);
+        }else{
+            $dni=$this->getUser()->getUsername();// el id del usuario logeado
+            $usu = $this->getDoctrine()->getRepository('AppBundle\Entity\Cliente')->findOneBy(array('email' => $dni));
+            return $this->render("cliente/articulo.html.twig", ["articulo"=>$Articulo, 'user'=>$usu]);
+        }
+        
     }
 }

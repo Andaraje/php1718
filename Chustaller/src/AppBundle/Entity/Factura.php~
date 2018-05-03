@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Factura
  *
- * @ORM\Table(name="factura", indexes={@ORM\Index(name="fk_articulos_has_cliente_cliente1_idx", columns={"cliente_dni"}), @ORM\Index(name="fk_articulos_has_cliente_articulos1_idx", columns={"articulos_id"})})
+ * @ORM\Table(name="factura", indexes={@ORM\Index(name="fk_articulos_has_cliente_articulos1_idx", columns={"articulos_id"}), @ORM\Index(name="fk_factura_cliente1_idx", columns={"cliente_idcliente"})})
  * @ORM\Entity
  */
 class Factura
@@ -50,10 +50,10 @@ class Factura
      *
      * @ORM\ManyToOne(targetEntity="Cliente")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="cliente_dni", referencedColumnName="dni")
+     *   @ORM\JoinColumn(name="cliente_idcliente", referencedColumnName="idcliente")
      * })
      */
-    private $clienteDni;
+    private $clientecliente;
 
 
 }

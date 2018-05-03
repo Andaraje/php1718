@@ -1,0 +1,47 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Provincia
+ *
+ * @ORM\Table(name="provincia")
+ * @ORM\Entity
+ */
+class Provincia
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idprovincia", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idprovincia;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="provincia", type="string", length=50, nullable=false)
+     */
+    private $provincia;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="provinciaseo", type="string", length=50, nullable=false)
+     */
+    private $provinciaseo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="provincia3", type="string", length=3, nullable=true)
+     */
+    private $provincia3;
+
+
+}
+

@@ -306,6 +306,16 @@ i:before {
   outline: none;
   cursor: pointer;
 }
+.btn-login:hover {
+  background-color: #000;
+  color:white;
+  font-size:15px;
+}
+.btn-login {
+  background-color: white;
+  color:#d91522;
+  font-size:15px;
+}
 
 .top_header_left .selector .ddcommon .ddTitle .ddTitleText img {
   padding-right: 10px;
@@ -1658,7 +1668,7 @@ i:before {
 }
 
 .solid_banner_inner h3 {
-  font-size: 24px;
+  font-size: 50px;
   text-transform: uppercase;
   color: #000;
   font-family: "Poppins", sans-serif;

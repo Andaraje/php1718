@@ -36,7 +36,7 @@ security:
                 default_target_path: /loginRedireccion
             logout:
                 path:   /logout
-                target: /login
+                target: /
     access_control:
      - { path: /Categorias/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
      - { path: /Buscar/, roles: IS_AUTHENTICATED_ANONYMOUSLY }

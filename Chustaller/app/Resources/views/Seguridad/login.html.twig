@@ -1,18 +1,54 @@
 {% extends 'base.html.twig' %}
 {% block body %}
 {{parent()}}
-<div class="loading">
-  <div class="circle light"></div>
-  <div class="circle dark"></div>
-  <div class="branding"></div>
-</div>
+<script src="{{asset('js/login.js')}}"></script>
+<section class="solid_banner_area">
+  <div class="container">
+      <div class="solid_banner_inner">
+          <h3>LOgin</h3>
+          <ul>
+              <li><a href="{{url('ultimos')}}">Principal</a></li>
+              <li><a href="#">Login</a></li>
+          </ul>
+      </div>
+  </div>
+</section>
+<section class="login_area p_100">
+  <div class="container">
+      <div class="login_inner">
+          <div class="row">
+              <div class="col-lg-4">
+                  <div class="login_title">
+                      <h2>Iniciar sesión</h2>
+                      <p>Si ya tienes una cuenta, inicia sesión</p>
+                  </div>
+                  {% if error %}
+                <div>{{ error.messageKey|trans(error.messageData,'security') }}</div>
+                {% endif %}
+                {{ form_start(formulario,{attr:{action:path("login_check_seguridad"), 
+                    class: 'login_form row'}}) }}
+                    {{ form_row(formulario.username,{'full_name':'_username', placeholder:'Su usuario'} )}}
+                    {{ form_row(formulario.password,{'full_name':'_password', placeholder:'Password'})}}
+                {{ form_end(formulario) }}
+              </div>
+              <div class="col-lg-8">
+                  <div class="login_title">
+                      <h2>Regístrate</h2>
+                      <p>Registrate para poder comprar en Chustaller, además podrás tener control de tus facturas y pedidos.</p>
+                  </div>
+                  {# formulario de registro #}
+                  {{form_start(formulario2,{attr:{novalidate:'novalidate'}})}}
+                  {{form_widget(formulario2)}}
+                  {{form_end(formulario2)}}
+                  <select id="provincias">
+                  {% for pro in provincias %}
+                      <option value="{{pro.idprovincia}}">{{pro.provincia}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
 
-{% if error %}
-<div>{{ error.messageKey|trans(error.messageData,'security') }}</div>
-{% endif %}
-{{ form_start(formulario,{attr:{action:path("login_check_seguridad"), 
-    style: 'margin-left: 40%; width: 20%;'}}) }}
-    {{ form_row(formulario.username,{'full_name':'_username'})}}
-    {{ form_row(formulario.password,{'full_name':'_password'})}}
-{{ form_end(formulario) }}
 {% endblock %}
