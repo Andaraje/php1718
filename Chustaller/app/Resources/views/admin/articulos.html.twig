@@ -1,0 +1,44 @@
+{% extends 'admin/baseadmin.html.twig' %}
+
+{% block containerfluid %}
+    <h1>Lista de Articulos</h1>
+    <a href="{{ path('articulos_new') }}"><i class="fa fa-plus-square" aria-hidden="true"></i> Añadir un nuevo articulo</a>
+    <table id="resultado">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Cilindrada</th>
+                <th>Cantidad</th>
+                <th>Imagen</th>
+                <th>Precio</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for articulo in articulos %}
+            <tr>
+                <td>{{ articulo.id }}</a></td>
+                <td>{{ articulo.nombre }}</td>
+                <td>{{ articulo.descripcion }}</td>
+                <td>{{ articulo.marca }}</td>
+                <td>{{ articulo.modelo }}</td>
+                <td>{{ articulo.cilindrada }}</td>
+                <td>{{ articulo.cantidad }}</td>
+                <td><img src="{{asset('img/' ~ articulo.imagen ~ '')}}" width="100px"></td>
+                <td>{{ articulo.precio }}</td>
+                <td>
+                    <a href="{{ path('articulos_delete', { 'id': articulo.id }) }}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                    <hr>
+                    <a href="{{ path('articulos_edit', { 'id': articulo.id }) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}

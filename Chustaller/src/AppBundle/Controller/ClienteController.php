@@ -63,18 +63,15 @@ class ClienteController extends Controller
      * Deletes a cliente entity.
      *
      * @Route("/Admin/Clientes/{idcliente}", name="cliente_delete")
-     * @Method("DELETE")
+     * 
      */
-    public function deleteAction(Request $request, Cliente $cliente)
+    public function deleteAction(Request $request,$idcliente)
     {
-        $form = $this->createDeleteForm($cliente);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($cliente);
-            $em->flush();
-        }
+        $em=$this->getDoctrine()->getManager();
+        $clientes=$em->getRepository(Cliente::class);
+        $c=$clientes->find($idcliente);
+        $em->remove($c);
+        $em->flush();
 
         return $this->redirectToRoute('cliente_index');
     }

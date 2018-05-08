@@ -25,10 +25,14 @@ class EstadisticasController extends Controller
      */
     public function visitasAction(Request $request )
     {
-
-            $em = $this->getDoctrine()->getManager();
-            $posts =  $em->getRepository('AppBundle\Entity\Contador')->findAll();
-            return $this->render('admin/estadisticas.html.twig', ['visitas'=>$posts]);
+        $em = $this->getDoctrine()->getEntityManager();
+        $db = $em->getConnection();
+        $query = "SELECT fecha, count(*) as num FROM contador GROUP BY fecha ORDER BY fecha; ";
+        $stmt = $db->prepare($query);
+        $params = array();
+        $stmt->execute($params);
+        $po=$stmt->fetchAll();
+        return $this->render('admin/estadisticas.html.twig', ['visitas'=>$po]);
             
 
         //return $this->render('admin/estadisticas.html.twig');

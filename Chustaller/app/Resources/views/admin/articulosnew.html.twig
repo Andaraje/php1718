@@ -1,0 +1,13 @@
+{% extends 'admin/baseadmin.html.twig' %}
+
+{% block containerfluid %}
+    <h1>Articulo Nuevo</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" value="Create" />
+    {{ form_end(form) }}
+
+    
+    <a href="{{ path('articulos_index') }}"><i class="fa fa-list" aria-hidden="true"></i> Volver al Listado</a>
+{% endblock %}

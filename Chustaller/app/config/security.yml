@@ -38,10 +38,11 @@ security:
                 path:   /logout
                 target: /
     access_control:
-     - { path: /Categorias/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-     - { path: /Buscar/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-     - { path: /Contacto/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-     - { path: /Articulo/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+     - { path: /Categorias, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+     - { path: /Buscar, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+     - { path: /Contacto, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+     - { path: /Articulo, roles: IS_AUTHENTICATED_ANONYMOUSLY }
      - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-     - { path: /Perfil/, roles: ROLE_CLIENTE }
-     - { path: /Admin/, roles: ROLE_ADMIN }
+     - { path: /Perfil, roles: ROLE_CLIENTE }
+     - { path: ^/Admin, roles: ROLE_ADMIN }
+     - { path: ^/Carrito, roles: IS_AUTHENTICATED_ANONYMOUSLY }

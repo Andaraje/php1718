@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Articulos
@@ -25,6 +26,7 @@ class Articulos
      * @var string
      *
      * @ORM\Column(name="nombre", type="string", length=150, nullable=false)
+     * @Assert\NotBlank()
      */
     private $nombre;
 
@@ -32,6 +34,7 @@ class Articulos
      * @var string
      *
      * @ORM\Column(name="descripcion", type="text", length=65535, nullable=true)
+     * @Assert\NotBlank()
      */
     private $descripcion;
 
@@ -39,6 +42,7 @@ class Articulos
      * @var string
      *
      * @ORM\Column(name="marca", type="string", length=45, nullable=false)
+     * @Assert\NotBlank()
      */
     private $marca;
 
@@ -46,6 +50,7 @@ class Articulos
      * @var string
      *
      * @ORM\Column(name="modelo", type="string", length=45, nullable=false)
+     * @Assert\NotBlank()
      */
     private $modelo;
 
@@ -53,6 +58,7 @@ class Articulos
      * @var string
      *
      * @ORM\Column(name="cilindrada", type="string", length=45, nullable=false)
+     * @Assert\NotBlank()
      */
     private $cilindrada;
 
@@ -60,13 +66,14 @@ class Articulos
      * @var integer
      *
      * @ORM\Column(name="cantidad", type="integer", nullable=true)
+     * @Assert\NotBlank()
      */
     private $cantidad;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="imagen", type="string", length=100, nullable=true)
+     * @ORM\Column(name="imagen", type="string", nullable=true)
+     * @Assert\NotBlank()
      */
     private $imagen;
 
@@ -347,5 +354,8 @@ class Articulos
     public function getCombustibleNombre()
     {
         return $this->combustibleNombre;
+    }
+    public function __toString(){
+        return $this->id;
     }
 }

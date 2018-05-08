@@ -1,22 +1,28 @@
 {% extends 'admin/baseadmin.html.twig' %}
 
     {% block containerfluid %}
+    {% set countert = 0 %}
+    
     <table id="resultado">
         <thead class="header">
             <tr>
-                <th>ip</th>
+                <th>Veces Entradas</th>
                 <th>Fecha</th>
                 
             </tr>
         </thead>
-        <tbody>
+        <tbody id="todo">
             {% for visita in visitas %}
             <tr>
-                <td>{{visita.ip}}</td>
-                <td>{{visita.fecha}}</td>  
+                <td class="veces">{{visita.num}}</td>
+                <td class="fecha">{{visita.fecha}}</td>  
             </tr>
+            {% set countert = countert + 1 %}
+            
             {% endfor %}
         </tbody>
     </table>
+    Visitas Totales = {{countert}}
+    <div id="visitasdias"></div>
     {% endblock %}
     

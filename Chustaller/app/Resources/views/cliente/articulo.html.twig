@@ -6,7 +6,7 @@
         {% if articulo != null %}
         <div class="row">
                 <div class="col-lg-4">
-                    <img src="{{asset('' ~ articulo.imagen ~ '')}}" alt="{{articulo.nombre}}">
+                    <img src="{{asset('img/' ~ articulo.imagen ~ '')}}" alt="{{articulo.nombre}}">
                 </div>
                 <div class="col-lg-8">
                     <div class="product_details_text">
@@ -23,7 +23,7 @@
                             <a href="#">Add your review</a>
                         </div>
                         <h6>Disponibilidad
-                        {% if articulo.cantidad > 1 %}
+                        {% if articulo.cantidad >= 1 %}
                         <span>Stock</span>
                         {% else %}
                         <span class="rojo">Agotado</span>
@@ -33,9 +33,9 @@
                         
                         <div class="quantity">
                             <div class="custom">
-                                <button class="reduced items-count" type="button"><i class="icon_minus-06"></i></button>
-                                <input type="text" name="qty" id="sst" maxlength="12" value="01" title="Quantity:" class="input-text qty">
-                                <button class="increase items-count" type="button"><i class="icon_plus"></i></button>
+                                <!-- <button class="reduced items-count" type="button"><i class="icon_minus-06"></i></button> -->
+                                <input type="number" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
+                                <!-- <button class="increase items-count" type="button"><i class="icon_plus"></i></button> -->
                             </div>
                             <a class="add_cart_btn" href="#">Añadir al carrito</a>
                         </div>

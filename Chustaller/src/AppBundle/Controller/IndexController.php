@@ -34,7 +34,7 @@ class IndexController extends Controller
         }   
         else   
         {    
-            $query3 = "INSERT INTO contador (id, ip, fecha) VALUES ('1','$ip','$fecha')";
+            $query3 = "INSERT INTO contador (id, ip, fecha) VALUES ('0','$ip','$fecha')";
             $stmt3 = $db->prepare($query3);
             $params3 = array();
             $stmt3->execute($params3);  
@@ -62,25 +62,29 @@ class IndexController extends Controller
         
     }
     /**
-     * @Route("/Buscar/{nombre}", name="busqueda")
+     * @Route("/Buscar/", name="busqueda")
      */
     public function busquedaAction(Request $request, $nombre)
     {
-        //$var=$request->query->get("buscar");
-        var_dump($nombre);
-        // $lista=$this->getDoctrine()
-        // ->getRepository("AppBundle\Entity\Articulos")->findBy(array('nombre'=> $nombre));
-        // return $this->render(
-        //     "cliente/busqueda.html.twig",
-        // ["listado"=>$lista]);
         $em = $this->getDoctrine()->getEntityManager();
         $db = $em->getConnection();
+        var_dump($nombre);
+        $form = new BusquedaType();
+        $form = $this->createForm('AppBundle\Form\BusquedaType');
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $palabra=$form["buscar"]->getData();
+            $query = "SELECT * FROM articulos WHERE nombre LIKE '%$palabra%' ";
+            $stmt = $db->prepare($query);
+            $params = array();
+            $stmt->execute($params);
+            $po=$stmt->fetchAll();
+            return $this->render("cliente/busqueda.html.twig", ["listado"=>$po]);
+            
+        }
+        return $this->render('base.html.twig', array('form' => $form->createView()
+        ));
  
-        $query = "SELECT * FROM articulos WHERE nombre LIKE '%$nombre%' ";
-        $stmt = $db->prepare($query);
-        $params = array();
-        $stmt->execute($params);
-        $po=$stmt->fetchAll();
-        return $this->render("cliente/busqueda.html.twig", ["listado"=>$po]);
+        
     }
 }
