@@ -1,32 +1,7 @@
 $(document).ready(function (){
 
 
-    var URLactual = $(location).attr('href');
-    if(URLactual.search( 'Buscar' )>1){
-        URLactual.replace('Buscar', '');
-        $("#buscar").click(function(){
-            var valor=$("#cajabusqueda").val();
-            location.href= valor;
-            });
-        $( "#cajabusqueda" ).keypress(function(e) {
-            if(e.which == 13) {
-                var valor=$("#cajabusqueda").val();
-                location.href=  valor;
-            }
-        });
-    }else{
-        //botón para hacer una búsqueda
-        $("#buscar").click(function(){
-            var valor=$("#cajabusqueda").val();
-            location.href="Buscar/" + valor;
-            });
-        $( "#cajabusqueda" ).keypress(function(e) {
-            if(e.which == 13) {
-                var valor=$("#cajabusqueda").val();
-                location.href="Buscar/" + valor;
-            }
-        });
-    }
+    
 
     //paginación de las búsquedas
     $("#resultado").DataTable({

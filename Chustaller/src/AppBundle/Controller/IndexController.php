@@ -10,6 +10,9 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+
+
 
 class IndexController extends Controller
 {
@@ -63,27 +66,23 @@ class IndexController extends Controller
     }
     /**
      * @Route("/Buscar/", name="busqueda")
+     * @Method({"GET", "POST"}) 
      */
-    public function busquedaAction(Request $request, $nombre)
+    public function busquedaAction(Request $request)
     {
         $em = $this->getDoctrine()->getEntityManager();
         $db = $em->getConnection();
-        var_dump($nombre);
-        $form = new BusquedaType();
-        $form = $this->createForm('AppBundle\Form\BusquedaType');
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $palabra=$form["buscar"]->getData();
-            $query = "SELECT * FROM articulos WHERE nombre LIKE '%$palabra%' ";
-            $stmt = $db->prepare($query);
-            $params = array();
-            $stmt->execute($params);
-            $po=$stmt->fetchAll();
-            return $this->render("cliente/busqueda.html.twig", ["listado"=>$po]);
+        $palabra=$_GET['buscar'];
+        
+        $query = "SELECT * FROM articulos WHERE nombre LIKE '%$palabra%' ";
+        $stmt = $db->prepare($query);
+        $params = array();
+        $stmt->execute($params);
+        $po=$stmt->fetchAll();
+        return $this->render("cliente/busqueda.html.twig", ["listado"=>$po]);
             
-        }
-        return $this->render('base.html.twig', array('form' => $form->createView()
-        ));
+        
+        
  
         
     }

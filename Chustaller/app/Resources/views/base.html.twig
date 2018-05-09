@@ -50,10 +50,12 @@
                         
                         
                         <div class="input-group">
-                            <input type="text" class="form-control" id="cajabusqueda" placeholder="Buscar" aria-label="Buscar">
-                            <span class="input-group-btn">
-                            <button class="btn btn-secondary" id="buscar" type="button"><i class="icon-magnifier"></i></button>
-                            </span>
+                            <form action="{{url('busqueda')}}" method="GET">
+                                <input type="text" class="form-control" name="buscar" placeholder="Buscar" aria-label="Buscar">
+                                <span class="input-group-btn">
+                                <input type="submit" class="btn btn-secondary" id="buscar" type="button"><i class="icon-magnifier"></i></button>
+                                </span>
+                            </form>
                         </div>
                     </div>
                 </div>
