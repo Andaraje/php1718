@@ -12,6 +12,4 @@ _errors:
 
 _main:
     resource: routing.yml
-my_image_route:
-    path: /Admin/Articulos/{id}
-    defaults: {_controller: AppBundle:Articulos:img}
+

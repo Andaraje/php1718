@@ -26,24 +26,13 @@ class ContactController extends Controller
             $form->handleRequest($query);
 
             if ($form->isValid()) {
-                $mailer = $this->get('mailer');
-                $message = $mailer->createMessage()
-                    ->setSubject($form->get('motivo')->getData())
-                    ->setFrom('chustallerr@gmail.com')
-                    ->setTo('chustallerr@gmail.com')
-                    ->setBody(
-                        $this->renderView(
-                            'cliente/contact.html.twig',
-                            array(
-                                'ip' => $query->getClientIp(),
-                                'nombre' => $form->get('nombre')->getData(),
-                                'email' => $form->get('email')->getData(),
-                                'mensaje' => $form->get('mensaje')->getData()
-                            )
-                        )
-                    );
-
-                $mailer->send($message);
+                $nombre = $form->getData()['nombre'];
+                $email = $form->getData()['email'];
+                $motivo = $form->getData()['motivo'];
+                $mensaje = $form->getData()['mensaje'];
+                $ip = $query->getClientIp();
+                $cuerpo = "Nombre :". $nombre . "\n"."Email :".$email . "\n" . $mensaje . "\n" . $ip;
+                mail("chustallerr@gmail.com,chustallerr@gmail.com",$motivo,$cuerpo) ;
 
                 $query->getSession()->getFlashBag()->add('success', 'Tu email ha sido enviado. Gracias');
 

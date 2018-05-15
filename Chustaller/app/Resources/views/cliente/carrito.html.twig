@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+    {% block logo %}
+        <img src="{{asset('img/logoin.png')}}" alt="">
+    {% endblock %}
+{% block body %}
+{{ parent() }}
+<section class="solid_banner_area">
+        <div class="container">
+            <div class="solid_banner_inner">
+                <h1>Carrito</h1>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="shopping-cart2.html">Shopping cart 02</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <div class="container">
+            
+        <!--================Shopping Cart Area =================-->
+        <section class="shopping_cart_area p_100">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="cart_items">
+                                <h3>Tú carrito</h3>
+                                <table class="table-responsive">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th>Precio</th>
+                                            <th>Cantidad</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tablecart">
+                                    
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="cart_totals_area">
+                                <h4>Total piezas</h4>
+                                <div class="cart_t_list">
+                                    <div class="media">
+                                        <div class="d-flex">
+                                            <h5>Subtotal</h5>
+                                        </div>
+                                        <div class="media-body">
+                                            <h6 id="subtotal"></h6>
+                                        </div>
+                                    </div>
+                                    <div class="media">
+                                        <div class="d-flex">
+                                            <h5>Envio</h5>
+                                        </div>
+                                        <div class="media-body">
+                                            <p>El envio será relativo según la dirección de entrega</p>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="total_amount row m0 row_disable">
+                                    <div class="float-left">
+                                        Total
+                                    </div>
+                                    <div class="float-right">
+                                        $400
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" value="submit" class="btn update-btn form-control btn-login">Pasar por caja</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--================End Shopping Cart Area =================-->
+    </div>
+{% endblock %}

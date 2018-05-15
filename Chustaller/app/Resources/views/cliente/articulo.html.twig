@@ -3,41 +3,57 @@
     {{parent()}}
 
     <div class="container">
-        {% if articulo != null %}
+        {% if articulo is defined %}
         <div class="row">
                 <div class="col-lg-4">
-                    <img src="{{asset('img/' ~ articulo.imagen ~ '')}}" alt="{{articulo.nombre}}">
+                    <img id="imgpro" src="{{asset('img/' ~ articulo.imagen ~ '')}}" alt="{{articulo.nombre}}">
                 </div>
                 <div class="col-lg-8">
                     <div class="product_details_text">
-                        <h3>{{articulo.nombre}}</h3>
-                        <ul class="p_rating">
-                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                        <h3 id="nom">{{articulo.nombre}}</h3>
+                        Ref:<h4 id="ref">{{articulo.id}}</h4>
+                        {% if valoraciones != null %}
+                            <ul class="p_rating">
+                            {% set total = 0 %}
+                            {% set n = 0 %}
+                            {% for val in valoraciones %}
+                                {% set total = total + val.puntuacion|number_format %}
+                                {% set n = n + 1 %}
+                           {% endfor %}
+                           {% set media = total / n %}
+                           {% for i in 1.. media|number_format   %}
+                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                         {% endfor %}
                         </ul>
                         <div class="add_review">
-                            <a href="#">5 Reviews</a>
-                            <a href="#">Add your review</a>
+                            <a href="#">{{n}} Valoraciones</a>
                         </div>
+                         {% else %}
+                         No hay valoraciones
+                        {% endif %}
+                        
+                        
                         <h6>Disponibilidad
                         {% if articulo.cantidad >= 1 %}
                         <span>Stock</span>
                         {% else %}
                         <span class="rojo">Agotado</span>
                         {% endif %} </h6>
-                        <h4>{{articulo.precio}}€</h4>
+                        <h4 class="precio">{{articulo.precio}}€</h4>
                         <p> {{articulo.descripcion}}</p>
                         
                         <div class="quantity">
                             <div class="custom">
                                 <!-- <button class="reduced items-count" type="button"><i class="icon_minus-06"></i></button> -->
-                                <input type="number" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
+                                <input type="number" class="qty" id="sst" max="{{articulo.cantidad}}" value="1" title="Quantity:" class="input-text qty">
                                 <!-- <button class="increase items-count" type="button"><i class="icon_plus"></i></button> -->
                             </div>
-                            <a class="add_cart_btn" href="#">Añadir al carrito</a>
+                            {% if articulo.cantidad >= 1 %}
+                                <a class="add_cart_btn" href="#"> <i class="fa fa-shopping-cart"></i>Añadir al carrito</a>
+                            {% else %}
+                                <a disabled="true" class="add_cart_btn" href="#">Añadir al carrito</a>
+                            {% endif %}
+
                         </div>
                         <div class="shareing_icon">
                             <h5>Compartir :</h5>
@@ -52,6 +68,36 @@
                     </div>
                 </div>
             </div>
+            <section class="product_description_area">
+                <div class="container">
+                    <nav class="tab_menu">
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Comentarios </font></font></a>
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            
+                            <ul>
+                                {% for val in valoraciones %}
+                                     <h4>{{val.user}}</h4>
+                                     {% for i in 1.. val.puntuacion|number_format   %}
+                                      <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                    {% endfor %}
+                                            
+                                    <br>
+                                    {{val.comentario}}
+                                    <br>
+                                    <hr>
+                                {% endfor %}
+                                
+                                
+                            </ul>
+                        </div>
+                        
+                    </div>
+                </div>
+            </section>
         {% else %}
             <p>No existe este articulo</p>
         {% endif %}

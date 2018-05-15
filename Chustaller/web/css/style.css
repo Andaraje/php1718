@@ -601,9 +601,11 @@ i:before {
 .top_right li.cart a {
   position: relative;
 }
-
-.top_right li.cart a:before {
-  content: "0";
+.carrito {
+  width:250px;
+  font-size:1em;
+}
+.top_right li.cart a span {
   height: 20px;
   width: 20px;
   border-radius: 50%;
@@ -617,6 +619,7 @@ i:before {
   background: #d91522;
   line-height: 20px;
 }
+
 
 .top_right li.h_price .bootstrap-select {
   width: 100px !important;
@@ -2577,6 +2580,7 @@ i:before {
   -o-transition: all 400ms linear 0s;
   transition: all 400ms linear 0s;
   font-family: "Poppins", sans-serif;
+  text-decoration:none;
 }
 
 .add_cart_btn:hover {
@@ -2900,7 +2904,7 @@ i:before {
   font-size: 14px;
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
-  letter-spacing: .35px;
+  letter-spacing: 35px;
   color: #0b1033;
 }
 
@@ -3721,6 +3725,7 @@ i:before {
   border: 1px solid #cccccc;
   padding: 0px 30px;
   margin-left: 7px;
+  text-decoration:none;
 }
 
 .shareing_icon h5 {
@@ -4481,6 +4486,14 @@ i:before {
   align-self: center;
   text-align: center;
   border: none;
+}
+.cart-inv {
+  display:none;
+  z-index:99; 
+  width:300px; 
+  height: auto; 
+  background-color:grey; 
+  position:absolute;
 }
 
 .cart_items .table tbody tr td .media {

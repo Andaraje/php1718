@@ -29,6 +29,18 @@ class Valoracion
     private $comentario;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="puntuacion", type="integer", nullable=false)
+     */
+    private $puntuacion = '0';
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="user", type="string", nullable=true)
+     */
+    private $user = 'anon';
+    /**
      * @var \Articulos
      *
      * @ORM\ManyToOne(targetEntity="Articulos")
@@ -72,6 +84,54 @@ class Valoracion
     public function getComentario()
     {
         return $this->comentario;
+    }
+
+    /**
+     * Set puntuacion
+     *
+     * @param integer $puntuacion
+     *
+     * @return Valoracion
+     */
+    public function setPuntuacion($puntuacion)
+    {
+        $this->puntuacion = $puntuacion;
+
+        return $this;
+    }
+
+    /**
+     * Get puntuacion
+     *
+     * @return integer
+     */
+    public function getPuntuacion()
+    {
+        return $this->puntuacion;
+    }
+
+    /**
+     * Set user
+     *
+     * @param string $user
+     *
+     * @return Valoracion
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return string
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 
     /**
