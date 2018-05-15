@@ -72,11 +72,36 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" value="submit" class="btn update-btn form-control btn-login">Pasar por caja</button>
+                            <button type="submit"  value="submit" class="btn update-btn form-control btn-login"><a id="comprar" data-toggle="modal" data-target="#myModal">Pasar por caja</a></button>
                         </div>
                     </div>
                 </div>
             </section>
+            <!-- The Modal -->
+    <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+              <div class="modal-content">
+      
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <h4 class="modal-title">Compra Realizada</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+      
+                <!-- Modal body -->
+                <div class="modal-body">
+                  
+                </div>
+      
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                  
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Salir</button>
+                </div>
+      
+              </div>
+            </div>
+          </div>
             <!--================End Shopping Cart Area =================-->
     </div>
 {% endblock %}

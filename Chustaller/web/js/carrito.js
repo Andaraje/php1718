@@ -200,9 +200,53 @@ $(document).ready(function(){
         })
     }
     
+
+
+    //Pagar la factura, este apartado se hará un ajax que enviará todos los id de los productos que se encuentren en localstorage
+    //e irá realizando una tupla en la tabla factura con ese id, el nombre del cliente, y el total
+    $("#comprar").click(function(){
+        var user=usuario();
+        var n=0;
+                    $.each(jsonData.carrito, function(i, item) {
+                        if(jsonData.carrito[i].User==user)
+                        {
+                            n = i;
+                            boolean = true;
+                            if(boolean==true){
+                                $.each(jsonData.carrito[i].Productos, function(j, jitem){
+                                    $.ajax({
+                                        method: "GET",
+                                        url: "Pagado/" + jsonData.carrito[i].Productos[j][0]+ "/" +jsonData.carrito[i].Productos[j][1],
+                                        dataType: 'json',
+                                        success: function(data)
+                                        {
+                                            
+                                            $('.modal-body').empty();
+                                            $('.modal-body').append("Comprado con éxito");
+                                            delete jsonData.carrito[i].Productos[j];
+                                            jsonData.carrito[i].Productos.splice(j,1);
+                                             
+                                        },
+                                        error: function(jqXHR, exception)
+                                        {
+                                            if(jqXHR.status === 405)
+                                            {
+                                                console.error("METHOD NOT ALLOWED!");
+                                            }
+                                        }
+                                    });
+                                })
+                            }
+                        }
+                    })
+                    
+        
+                    
+    })
     
 
-            
+
 
 
 })
+    
