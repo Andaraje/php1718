@@ -225,7 +225,8 @@ $(document).ready(function(){
                                             $('.modal-body').append("Comprado con éxito");
                                             delete jsonData.carrito[i].Productos[j];
                                             jsonData.carrito[i].Productos.splice(j,1);
-                                             
+                                            localStorage.setItem("jsonData", JSON.stringify(jsonData))
+                                            
                                         },
                                         error: function(jqXHR, exception)
                                         {
@@ -239,7 +240,8 @@ $(document).ready(function(){
                             }
                         }
                     })
-                    
+                    rellenarCarrito();
+                    checkOut();
         
                     
     })

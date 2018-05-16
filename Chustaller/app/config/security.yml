@@ -45,4 +45,4 @@ security:
      - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
      - { path: /Perfil, roles: ROLE_CLIENTE }
      - { path: ^/Admin, roles: ROLE_ADMIN }
-     - { path: ^/Carrito, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+     - { path: ^/Carrito, roles: ROLE_CLIENTE }

@@ -85,6 +85,13 @@ class Cliente
     private $email;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="password", type="string", length=300, nullable=false)
+     */
+    private $password;
+
+    /**
      * @var \Poblacion
      *
      * @ORM\ManyToOne(targetEntity="Poblacion")

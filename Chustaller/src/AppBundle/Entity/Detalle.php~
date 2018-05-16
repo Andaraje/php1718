@@ -1,0 +1,60 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Detalle
+ *
+ * @ORM\Table(name="detalle", indexes={@ORM\Index(name="fk_detalle_factura1_idx", columns={"idfactura"}), @ORM\Index(name="fk_detalle_articulos1_idx", columns={"articulos_id"})})
+ * @ORM\Entity
+ */
+class Detalle
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="cantidad", type="integer", nullable=false)
+     */
+    private $cantidad;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="precio", type="float", precision=10, scale=0, nullable=false)
+     */
+    private $precio;
+
+    /**
+     * @var \Articulos
+     *
+     * @ORM\ManyToOne(targetEntity="Articulos")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="articulos_id", referencedColumnName="id")
+     * })
+     */
+    private $articulos;
+
+    /**
+     * @var \Factura
+     *
+     * @ORM\ManyToOne(targetEntity="Factura")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idfactura", referencedColumnName="idfactura")
+     * })
+     */
+    private $idfactura;
+
+
+}
+

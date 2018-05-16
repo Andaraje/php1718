@@ -85,6 +85,13 @@ class Cliente
     private $email;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="password", type="string", length=300, nullable=false)
+     */
+    private $password;
+
+    /**
      * @var \Poblacion
      *
      * @ORM\ManyToOne(targetEntity="Poblacion")
@@ -330,6 +337,30 @@ class Cliente
     public function getEmail()
     {
         return $this->email;
+    }
+
+    /**
+     * Set password
+     *
+     * @param string $password
+     *
+     * @return Cliente
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get password
+     *
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->password;
     }
 
     /**

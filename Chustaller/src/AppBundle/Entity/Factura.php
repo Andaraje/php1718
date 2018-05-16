@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Factura
  *
- * @ORM\Table(name="factura", indexes={@ORM\Index(name="fk_articulos_has_cliente_articulos1_idx", columns={"articulos_id"}), @ORM\Index(name="fk_factura_cliente1_idx", columns={"cliente_idcliente"})})
+ * @ORM\Table(name="factura", indexes={@ORM\Index(name="fk_factura_cliente1_idx", columns={"cliente_idcliente"})})
  * @ORM\Entity
  */
 class Factura
@@ -34,16 +34,6 @@ class Factura
      * @ORM\Column(name="pagado", type="boolean", nullable=true)
      */
     private $pagado = '0';
-
-    /**
-     * @var \Articulos
-     *
-     * @ORM\ManyToOne(targetEntity="Articulos")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="articulos_id", referencedColumnName="id")
-     * })
-     */
-    private $articulos;
 
     /**
      * @var \Cliente
@@ -113,30 +103,6 @@ class Factura
     public function getPagado()
     {
         return $this->pagado;
-    }
-
-    /**
-     * Set articulos
-     *
-     * @param \AppBundle\Entity\Articulos $articulos
-     *
-     * @return Factura
-     */
-    public function setArticulos(\AppBundle\Entity\Articulos $articulos = null)
-    {
-        $this->articulos = $articulos;
-
-        return $this;
-    }
-
-    /**
-     * Get articulos
-     *
-     * @return \AppBundle\Entity\Articulos
-     */
-    public function getArticulos()
-    {
-        return $this->articulos;
     }
 
     /**

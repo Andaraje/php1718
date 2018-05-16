@@ -34,12 +34,14 @@ class Valoracion
      * @ORM\Column(name="puntuacion", type="integer", nullable=false)
      */
     private $puntuacion = '0';
+
     /**
      * @var string
      *
-     * @ORM\Column(name="user", type="string", nullable=true)
+     * @ORM\Column(name="user", type="string", length=255, nullable=true)
      */
     private $user = 'anon';
+
     /**
      * @var \Articulos
      *

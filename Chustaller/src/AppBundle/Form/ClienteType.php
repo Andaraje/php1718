@@ -69,6 +69,11 @@ class ClienteType extends AbstractType
                 'placeholder' => 'email',
                 'class' => 'col-lg-6 form-group'
             )
+        ))->add('password', PasswordType::class, array(
+            'attr' => array(
+                'placeholder' => 'password',
+                'class' => 'col-lg-6 form-group'
+            )
         ))->add('poblacionpoblacion')
         ->add('Registrate', SubmitType::class, array( 'attr' => array(
             'label' => 'Registrate',
@@ -111,6 +116,10 @@ class ClienteType extends AbstractType
                 new Length(array('min' => 5))
             ),
             'puerta' => array(
+                new NotBlank(array('message' => 'El mensaje no puede estar vacío.')),
+                new Length(array('min' => 5))
+            ),
+            'password' => array(
                 new NotBlank(array('message' => 'El mensaje no puede estar vacío.')),
                 new Length(array('min' => 5))
             )

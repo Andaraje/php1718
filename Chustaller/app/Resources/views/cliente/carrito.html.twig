@@ -9,8 +9,8 @@
             <div class="solid_banner_inner">
                 <h1>Carrito</h1>
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="shopping-cart2.html">Shopping cart 02</a></li>
+                    <li><a href="{{url('ultimos')}}">Home</a></li>
+                    
                 </ul>
             </div>
         </div>
@@ -55,10 +55,10 @@
                                     </div>
                                     <div class="media">
                                         <div class="d-flex">
-                                            <h5>Envio</h5>
+                                            <h5>IVA</h5>
                                         </div>
                                         <div class="media-body">
-                                            <p>El envio será relativo según la dirección de entrega</p>
+                                            <p>Será añadido un 21% por cada producto por el IVA</p>
                                         </div>
                                     </div>
                                     
@@ -68,7 +68,7 @@
                                         Total
                                     </div>
                                     <div class="float-right">
-                                        $400
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -90,12 +90,12 @@
       
                 <!-- Modal body -->
                 <div class="modal-body">
-                  
+                  <a class="pdf" href="{{url('factura')}}">Descargar Factura</a>
                 </div>
       
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                  
+                    <a class="pdf" href="{{url('factura')}}">Descargar Factura</a>
                   <button type="button" class="btn btn-danger" data-dismiss="modal">Salir</button>
                 </div>
       

@@ -52,7 +52,7 @@ class loginController extends Controller
         if($formulario2->isSubmitted() && $formulario2->isValid())
         {
             $user = new User();
-            $prueba = $formulario2->getData()->getDni();
+            $prueba = $formulario2->getData()->getPassword();
             $email = $formulario2->getData()->getEmail();
             $user->setUsername($email);
             $user->setEmail($email);
