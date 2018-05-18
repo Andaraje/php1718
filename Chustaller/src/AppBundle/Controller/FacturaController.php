@@ -17,29 +17,58 @@ use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 class FacturaController extends Controller
 {
     /**
-     * @Route("/Carrito/Pagado/{id}/{cant}", name="pagar")
-     * @Method({"GET"})
+     * @Route("/Carrito/Pagado/", name="pagar")
+     * @Method({"POST"})
      */
-    public function pagarAction(Request $request, $id, $cant){
+    public function pagarAction(Request $request){
         if($request->isXmlHttpRequest())
         {
             $em = $this->getDoctrine()->getManager();
             $dni=$this->getUser()->getUsername();// el id del usuario logeado
             $usu = $this->getDoctrine()->getRepository('AppBundle\Entity\Cliente')->findOneBy(array('email' => $dni));
-            $articulo = $this->getDoctrine()->getRepository('AppBundle\Entity\Articulos')->find($id);
+            
+            //Crear una factura
             $factura = new Factura();
-            $lineaf = new Detalle();
-            $lineaf->setClientecliente($usu);
-            $lineaf->setArticulos($articulo);
+            $factura->setClientecliente($usu);
+            $totalprecio = 0;
+            $id = $factura->getIdfactura();
+            //datos recogidos por el ajax
+            $data = json_decode($_POST['array']);
+            foreach ($data as $producto) {
+                
+                $articulo = $this->getDoctrine()->getRepository('AppBundle\Entity\Articulos')->find($producto[0]);
+                $lineaf = new Detalle();
+                $lineaf->setArticulos($articulo);
+                $lineaf->setPrecio($articulo->getPrecio()*$producto[1]);
+                $totalprecio+=$articulo->getPrecio()*$producto[1];
+                $lineaf->setIdfactura($factura);
+                $lineaf->setCantidad($producto[1]);
+                $em->persist($lineaf);
+                $em->flush();
+            }
+            $factura->setPreciofac($totalprecio);
+            $em->persist($factura);
+            $em->flush();
+           
 
-            //calcular el precio total
-            $precio = $articulo->getPrecio();
+
             
 
-            $lineaf->setCantidad($cant);
-            $em->persist($lineaf);
-            $em->flush();
+            
+            
+            // 
+            // $lineaf->setClientecliente($usu);
+            // $lineaf->setArticulos($articulo);
 
+            // //calcular el precio total
+            // $precio = $articulo->getPrecio();
+            
+
+            // $lineaf->setCantidad($cant);
+            // $em->persist($lineaf);
+            // $em->flush();
+            
+            
             $response = new JsonResponse();
             $response->setStatusCode(200);
             $response->setData(array(
@@ -50,14 +79,15 @@ class FacturaController extends Controller
         
     }
     /**
-     * @Route("/Carrito/Pagado/Factura/", name="factura")
+     * @Route("/Perfil/MisFacturas/{id}", name="factura")
      */
-    public function facturaAction(Request $request){
+    public function facturaAction(Request $request, $id){
         //El nombre del snappy
         $filename = 'myFirstSnappyPDF';
-            
+        $em = $this->getDoctrine()->getManager();
+        $factura = $this->getDoctrine()->getRepository('AppBundle\Entity\Detalle')->findBy(array('idfactura'=>$id));
         //Renderizamos la vista pdf para pasarla a html
-        $html = $this->renderView('cliente/factura.html.twig');
+        $html = $this->renderView('cliente/factura.html.twig', array("factura"=>$factura));
         return new PdfResponse($this->get('knp_snappy.pdf')->getOutputFromHtml($html, array(
                 'encoding' => 'utf-8', //Codificacion de caracteres para que no salgan simbolos extraños
             )
@@ -65,5 +95,16 @@ class FacturaController extends Controller
             'file.pdf' //Nombre del pdf
             
         );
+    }
+    /**
+     * @Route("/Perfil/MisFacturas/", name="listadoF")
+     */
+    public function listadoFAction(Request $request){
+        $em = $this->getDoctrine()->getManager();
+        $dni=$this->getUser()->getUsername();// el email del usuario logeado
+        $usu = $this->getDoctrine()->getRepository('AppBundle\Entity\Cliente')->findOneBy(array('email' => $dni));
+        $facturas = $this->getDoctrine()->getRepository('AppBundle\Entity\Factura')->findBy(array('clientecliente'=>$usu));
+        return $this->render("cliente/facturacion.html.twig", ["facturas"=>$facturas]);
+        
     }
 }

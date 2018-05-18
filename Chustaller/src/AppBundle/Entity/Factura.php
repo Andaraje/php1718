@@ -24,16 +24,17 @@ class Factura
     /**
      * @var float
      *
-     * @ORM\Column(name="preciofac", type="float", precision=10, scale=0, nullable=false)
+     * @ORM\Column(name="preciofac", type="float", precision=10, scale=0, nullable=true)
      */
     private $preciofac;
 
+    
     /**
-     * @var boolean
+     * @var string
      *
-     * @ORM\Column(name="pagado", type="boolean", nullable=true)
+     * @ORM\Column(name="fecha", type="string", nullable=true)
      */
-    private $pagado = '0';
+    private $fecha;
 
     /**
      * @var \Cliente
@@ -82,27 +83,27 @@ class Factura
     }
 
     /**
-     * Set pagado
+     * Set fecha
      *
-     * @param boolean $pagado
+     * @param \DateTime $fecha
      *
      * @return Factura
      */
-    public function setPagado($pagado)
+    public function setFecha($fecha)
     {
-        $this->pagado = $pagado;
+        $this->fecha = $fecha;
 
         return $this;
     }
 
     /**
-     * Get pagado
+     * Get fecha
      *
-     * @return boolean
+     * @return \DateTime
      */
-    public function getPagado()
+    public function getFecha()
     {
-        return $this->pagado;
+        return $this->fecha;
     }
 
     /**

@@ -48,7 +48,7 @@ class Detalle
     /**
      * @var \Factura
      *
-     * @ORM\ManyToOne(targetEntity="Factura")
+     * @ORM\ManyToOne(targetEntity="Factura", cascade = {"persist"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="idfactura", referencedColumnName="idfactura")
      * })
@@ -160,6 +160,9 @@ class Detalle
      */
     public function getIdfactura()
     {
+        return $this->idfactura;
+    }
+    public function __toString(){
         return $this->idfactura;
     }
 }

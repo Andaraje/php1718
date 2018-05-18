@@ -213,19 +213,20 @@ $(document).ready(function(){
                             n = i;
                             boolean = true;
                             if(boolean==true){
-                                $.each(jsonData.carrito[i].Productos, function(j, jitem){
+                                
                                     $.ajax({
-                                        method: "GET",
-                                        url: "Pagado/" + jsonData.carrito[i].Productos[j][0]+ "/" +jsonData.carrito[i].Productos[j][1],
+                                        method: "POST",
+                                        url: "Pagado/",
+                                        data: {'array':JSON.stringify(jsonData.carrito[i].Productos)},
                                         dataType: 'json',
                                         success: function(data)
                                         {
                                             
-                                            $('.modal-body').empty();
-                                            $('.modal-body').append("Comprado con éxito");
-                                            delete jsonData.carrito[i].Productos[j];
-                                            jsonData.carrito[i].Productos.splice(j,1);
-                                            localStorage.setItem("jsonData", JSON.stringify(jsonData))
+                                            
+                                                
+                                                $(".modal-body").append("<p> Para descargar la factura ve al panel de usuario y mira tus pedidos :) </p> " );                
+                                                jsonData.carrito[i].splice(i,1);
+                                                localStorage.setItem("jsonData", JSON.stringify(jsonData));
                                             
                                         },
                                         error: function(jqXHR, exception)
@@ -234,9 +235,14 @@ $(document).ready(function(){
                                             {
                                                 console.error("METHOD NOT ALLOWED!");
                                             }
+                                            if(jqXHR.status === 500)
+                                            {
+                                                $(".modal-body").append("<p> Ha habido un problema, contacte con nosotros y notifiquenoslo </p> " );                
+
+                                            }
                                         }
                                     });
-                                })
+                                
                             }
                         }
                     })

@@ -6,7 +6,7 @@
         {% if articulo is defined %}
         <div class="row">
                 <div class="col-lg-4">
-                    <img id="imgpro" src="{{asset('img/' ~ articulo.imagen ~ '')}}" alt="{{articulo.nombre}}">
+                    <img id="imgpro" style="width:200px; height:auto;" src="{{asset('img/' ~ articulo.imagen ~ '')}}" alt="{{articulo.nombre}}">
                 </div>
                 <div class="col-lg-8">
                     <div class="product_details_text">
@@ -90,7 +90,12 @@
                                     <br>
                                     <hr>
                                 {% endfor %}
-                                
+                                {% if user is defined %}
+                                    {{ form_start(form) }}
+                                    {{ form_widget(form) }}
+                                    
+                                {{ form_end(form) }}
+                                {% endif %}
                                 
                             </ul>
                         </div>

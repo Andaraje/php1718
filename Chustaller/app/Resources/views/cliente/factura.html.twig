@@ -5,13 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Factura</title>
-</head>
+    <link href="{{absolute_url (asset('css/bootstrap.min.css'))}}" rel="stylesheet">
+  </head>
 <body>
     <header>
-        <img src="{{asset('img/logo.png')}}" alt="">
+        <img style="float:left; width:100px;" src="{{absolute_url (asset('img/logo.png'))}}" alt="">
+        <div style="float:right;">
+            Chustaller S.A <br>
+            Valle de los caídos Nº 8 Nave 6 Parcela 4 <br>
+            Tlfn: 671767693 <br>
+            Correo : chustallerr@gmail.com <br>
+        </div>
     </header>
+    <hr>
     <container>
-        <table>
+        <table class="table">
             <thead>
                 <tr>
                     <th>Nombre</th>
@@ -21,10 +29,24 @@
                 </tr>
             </thead>
             <tbody>
-                {% for row in array %}
-                    
+                {% set total = 0 %}
+                {% for detalle in factura %}
+                    <tr>
+                        <td>{{detalle.articulos.nombre}}</td>
+                        <td>{{detalle.articulos.precio}}€</td>
+                        {% set total = total + detalle.articulos.precio|number_format %}
+                        <td><img style="width:100px; height:auto;" src="{{absolute_url (asset('img/' ~ detalle.articulos.imagen ~ ''))}}" alt=""></td>
+                        <td>{{detalle.cantidad}}</td>
+                    </tr>
                 {% endfor %}
             </tbody>
+            <hr>
+            <tfoot>
+                <tr>
+                    <th colspan="3">Total Factura con IVA</th>
+                    <th>{{total}}€</th>
+                </tr>
+            </tfoot>
         </table>
     </container>
 </body>

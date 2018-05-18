@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+{{ parent() }}
+<div class="container">
+    <table id="resultado">
+        <thead class="header">
+            <tr>
+                <th>Fecha</th>
+                <th>Precio Final</th>
+                <th>Download</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in facturas %}
+                <tr>
+                    <td>{{row.fecha}}</td>
+                    <td>{{row.preciofac}}€</td>
+                    <td><a href="{{url('factura',{'id':row.idfactura})}}"><i class="fa fa-download"></i> Descargar</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

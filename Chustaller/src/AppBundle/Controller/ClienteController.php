@@ -47,8 +47,7 @@ class ClienteController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
+            $this->getDoctrine()->getManager()->flush();   
             return $this->redirectToRoute('cliente_edit', array('idcliente' => $cliente->getIdcliente()));
         }
 

@@ -24,16 +24,16 @@ class Factura
     /**
      * @var float
      *
-     * @ORM\Column(name="preciofac", type="float", precision=10, scale=0, nullable=false)
+     * @ORM\Column(name="preciofac", type="float", precision=10, scale=0, nullable=true)
      */
     private $preciofac;
 
     /**
-     * @var boolean
+     * @var \DateTime
      *
-     * @ORM\Column(name="pagado", type="boolean", nullable=true)
+     * @ORM\Column(name="fecha", type="datetime", nullable=false)
      */
-    private $pagado = '0';
+    private $fecha = 'CURRENT_TIMESTAMP';
 
     /**
      * @var \Cliente
