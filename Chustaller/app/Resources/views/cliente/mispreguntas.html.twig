@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+{{ parent() }}
+<div class="container">
+    <h2><a href="{{url('perfil')}}">Atrás</a></h2> 
+    <table class="table hilo">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Titulo</th>
+                <th>Tema</th>
+                <th>Acciones</th>
+            </tr> 
+        </thead>
+        <tbody>
+            {% for hilo in hilos %}
+                <tr>
+                    <td>{{hilo.fecha}}</td>
+                    <td>{{hilo.titulo}}</td>
+                    <td>{{hilo.mensaje}}</td>
+                    <td><a class="btn btn-danger btn-lg w-50" href="{{ path('hilos_delete', { 'id': hilo.id }) }}"><span class="glyphicon glyphicon-trash"></span></a>
+                        <a class="btn btn-success btn-lg w-50" href="{{ path('hilo_edit', { 'id': hilo.id }) }}"><i class="fa fa-edit"></i></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

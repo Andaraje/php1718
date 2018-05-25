@@ -11,7 +11,19 @@ class adminController extends Controller
      * @Route("/Admin", name="administrador")
      */
     public function administradorAction(){
+
+        //Total de compras de un mes dado
+        $em = $this->getDoctrine()->getEntityManager();
+        $db = $em->getConnection();
+        $query = "SELECT fecha, sum(preciofac) as total, count(*) as num FROM factura GROUP BY month(fecha) ORDER BY fecha;  ";
+        $stmt = $db->prepare($query);
+        $params = array();
+        $stmt->execute($params);
+        $po=$stmt->fetchAll();
+
         
-            return $this->render("admin/baseadmin.html.twig");
+        //facturas
+        $facturas = $em->getRepository('AppBundle:Factura')->findAll();
+            return $this->render("admin/indexadmin.html.twig", ['compras'=>$po, 'facturas'=>$facturas]);
     }
 }

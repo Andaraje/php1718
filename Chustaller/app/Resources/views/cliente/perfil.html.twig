@@ -7,7 +7,9 @@
         <ul>
             <li>Hola, {{user.nombre}}, {{user.primerApellido}} {{user.segundoApellido}}</li><br>
             <h4><a href="{{ path('perfilcliente_edit', { 'idcliente': user.idcliente }) }}">Editar Información personal</a></h4><br>
-            <h4><a href="{{url('listadoF')}}">Mis facturas</a></h4>
+            <h4><a href="{{url('listadoF')}}">Mis facturas</a></h4><br>
+            <h4><a href="{{url('mispreguntas')}}">Mis Preguntas</a></h4><br>
+            <h4><a href="{{url('misrespuestas')}}">Mis Respuestas</a></h4>
         </ul>
     </div>
 </div>

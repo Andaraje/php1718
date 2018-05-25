@@ -1,0 +1,48 @@
+{% extends 'admin/baseadmin.html.twig' %}
+
+    {% block containerfluid %}
+    {% set countert = 0 %}
+    <table class="resultado">
+        <thead class="header">
+            <tr>
+                <th>Veces Entradas</th>
+                <th>Fecha</th>
+                
+            </tr>
+        </thead>
+        <tbody id="todo">
+            {% for com in compras %}
+            <tr>
+                <td class="veces">{{com.total}}</td>
+                <td class="fecha">{{com.fecha}}</td>  
+            </tr>
+            {% set countert = countert + 1 %}
+            
+            {% endfor %}
+        </tbody>
+    </table>
+    Compras Totales = {{countert}}
+    <div id="visitasdias"></div>
+    <table class="resultado">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Fecha</th>
+                <th>Total factura</th>
+                <th>Usuario comprador</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for fac in facturas %}
+            <tr>
+                <td>{{fac.idfactura}}</td>
+                <td>{{fac.fecha}}</td>  
+                <td>{{fac.preciofac}} €</td>  
+                <td>{{fac.clientecliente.email}}</td>  
+            </tr>
+            
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endblock %}
+    

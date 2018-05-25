@@ -233,7 +233,7 @@ $(document).ready(function(){
                                         {
                                             if(jqXHR.status === 405)
                                             {
-                                                console.error("METHOD NOT ALLOWED!");
+                                                $(".modal-body").append("<p> El Carrito esta vacio </p> " );                
                                             }
                                             if(jqXHR.status === 500)
                                             {

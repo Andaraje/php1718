@@ -815,6 +815,9 @@ i:before {
 .shop_header_area .navbar .navbar-nav li:hover a, .shop_header_area .navbar .navbar-nav li.active a {
   color: #d91522;
 }
+.headforo {
+  color:#d91522;
+}
 
 @media (min-width: 992px) {
   .shop_header_area .navbar .navbar-nav li.submenu .dropdown-menu {

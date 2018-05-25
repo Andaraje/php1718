@@ -34,7 +34,7 @@
                     <tr>
                         <td>{{detalle.articulos.nombre}}</td>
                         <td>{{detalle.articulos.precio}}€</td>
-                        {% set total = total + detalle.articulos.precio|number_format %}
+                        {% set total = total + (detalle.articulos.precio|number_format * detalle.cantidad|number_format) %}
                         <td><img style="width:100px; height:auto;" src="{{absolute_url (asset('img/' ~ detalle.articulos.imagen ~ ''))}}" alt=""></td>
                         <td>{{detalle.cantidad}}</td>
                     </tr>

@@ -17,6 +17,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
         <script src="{{ asset('js/libreria.js')}}"></script>
         <script src="{{ asset('js/carrito.js')}}"></script>
+        <script src="{{ asset('js/foro.js')}}"></script>
         
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -53,34 +54,22 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
-                    <div class="top_header_left">
-                        
-                        
-                        <div class="input-group">
-                            <form action="{{url('busqueda')}}" method="GET">
-                                <input type="text" class="form-control" name="buscar" placeholder="Buscar" aria-label="Buscar">
-                                <span class="input-group-btn">
-                                <input type="submit" class="btn btn-secondary" id="buscar" type="button"><i class="icon-magnifier"></i></button>
-                                </span>
-                            </form>
-                        </div>
-                    </div>
+                    {% block logo %}
+                            <img src="{{asset('img/logoin.png')}}" alt="">
+                        {% endblock %}
                 </div>
                 
                 <div class="col-lg-6">
                     <div class="top_header_middle">
-                        <a href="#"><i class="fa fa-phone"></i> Llama al: <span>+34 671 767 693</span></a>
-                        <a href="#"><i class="fa fa-envelope"></i> Email: <span>chustallerr@gmail.com</span></a>
-                        {% block logo %}
-                            <img src="{{asset('img/logo.png')}}" alt="">
-                        {% endblock %}
+                        
+                        
                     </div>
                 </div>
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="col-lg-3 ">
-                    <div class="top_right_header">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light d-inline">
+                <div class="col-lg-3 d-inline">
+                    <div class="top_right_header d-inline" >
                         {% if user is defined %}
-                            <ul class="top_right">
+                            <ul class="top_right d-inline" >
                                 {# Categorias de todas las piezas #}
                                 <li title="Ver perfil" class="user"><a  href="{{url('perfil')}}"><i  class="icon-user icons"></i></a></li>  
                                 <li title="Cerrar sesión" class="user"><a href="{{path('logout')}}"><i class="fa fa-sign-out"></i></a></li>
@@ -109,9 +98,7 @@
                             {% else %}
                             <ul class="top_right">
                                     <li title="Ver perfil" class="user"><a  href="{{url('perfil')}}"><i  class="icon-user icons"></i></a></li>  
-                                    <li class="cart"><a aria-expanded="false" href="{{url('carrito')}}"><i class="fa fa-shopping-cart"><span id="numproductos"></span></i></a>
-                                
-                                </li>
+                                    
                             </ul>
                             {% endif %}
                             
@@ -128,7 +115,7 @@
         {% endblock %}
         {% block body %}
         <!--================Menu Area =================-->
-        <header class="shop_header_area">
+        <header class="shop_header_area" style="margin-top:-50px;">
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -139,7 +126,7 @@
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown submenu active">
                                 <a class="nav-link" href="{{url('ultimos')}}" role="button" >
-                                Inicio <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                Inicio
                                 </a>
                                 
                             </li>
@@ -168,65 +155,8 @@
     {% block footer %}
             
         
-        <!--================Footer Area =================-->
-        <footer class="footer_area">
-            <div class="container">
-                <div class="footer_widgets">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-4 col-6">
-                            <aside class="f_widget f_about_widget">
-                                <img src="{{asset('img/logoin.png')}}" alt="">
-                                <p>Persuit is a Premium PSD Template. Best choice for your online store. Let purchase it to enjoy now</p>
-                                <h6>Social:</h6>
-                                <ul>
-                                    <li><a href="#"><i class="social_facebook"></i></a></li>
-                                    <li><a href="#"><i class="social_twitter"></i></a></li>
-                                    <li><a href="#"><i class="social_pinterest"></i></a></li>
-                                    <li><a href="#"><i class="social_instagram"></i></a></li>
-                                    <li><a href="#"><i class="social_youtube"></i></a></li>
-                                </ul>
-                            </aside>
-                        </div>
-                        <div class="col-lg-2 col-md-4 col-6">
-                            <aside class="f_widget link_widget f_info_widget">
-                                <div class="f_w_title">
-                                    <h3>Información</h3>
-                                </div>
-                                <ul>
-                                    <li><a href="#">Sobre mi</a></li>
-                                    <li><a href="#">Información de envios</a></li>
-                                    <li><a href="#">Terminos & Condiciones</a></li>
-                                    
-                                </ul>
-                            </aside>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-6">
-                            <aside class="f_widget link_widget f_service_widget">
-                                <div class="f_w_title">
-                                    <h3>Servicio de Usuario</h3>
-                                </div>
-                                <ul>
-                                    <li><a href="{{url('perfil')}}">Mi cuenta</a></li>
-                                    <li><a href="{{url('listadoF')}}">Mis pedidos</a></li>
-                                    <li><a href="#">Foro</a></li>
-                                    <li><a href="{{url('contact')}}">Contacto</a></li>
-                                </ul>
-                            </aside>
-                        </div>
-                        
-                    </div>
-                </div>
-                <div class="footer_copyright">
-                    <h5>© <script>document.write(new Date().getFullYear());</script> <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    </h5>
-                </div>
-            </div>
-        </footer>
+    {% endblock %}
         
-        {% endblock %}
-        
-        {% block javascripts %}{% endblock %}
+    {% block javascripts %}{% endblock %}
     </body>
 </html>

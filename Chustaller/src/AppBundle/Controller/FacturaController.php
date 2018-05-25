@@ -27,54 +27,47 @@ class FacturaController extends Controller
             $dni=$this->getUser()->getUsername();// el id del usuario logeado
             $usu = $this->getDoctrine()->getRepository('AppBundle\Entity\Cliente')->findOneBy(array('email' => $dni));
             
-            //Crear una factura
-            $factura = new Factura();
-            $factura->setClientecliente($usu);
-            $totalprecio = 0;
-            $id = $factura->getIdfactura();
             //datos recogidos por el ajax
             $data = json_decode($_POST['array']);
-            foreach ($data as $producto) {
+            
+            if(empty($data)){
+                $response = new JsonResponse();
+                $response->setStatusCode(405);
+                $response->setData(array(
+                    'response' => 'error'
+                ));
+                return $response;
+            }else{
+                    //Crear una factura
+                $factura = new Factura();
+                $factura->setClientecliente($usu);
+                $totalprecio = 0;
+                $id = $factura->getIdfactura();
                 
-                $articulo = $this->getDoctrine()->getRepository('AppBundle\Entity\Articulos')->find($producto[0]);
-                $lineaf = new Detalle();
-                $lineaf->setArticulos($articulo);
-                $lineaf->setPrecio($articulo->getPrecio()*$producto[1]);
-                $totalprecio+=$articulo->getPrecio()*$producto[1];
-                $lineaf->setIdfactura($factura);
-                $lineaf->setCantidad($producto[1]);
-                $em->persist($lineaf);
-                $em->flush();
+                foreach ($data as $producto) {
+                    
+                    $articulo = $this->getDoctrine()->getRepository('AppBundle\Entity\Articulos')->find($producto[0]);
+                    $lineaf = new Detalle();
+                    $lineaf->setArticulos($articulo);
+                    $lineaf->setPrecio($articulo->getPrecio()*$producto[1]);
+                    $totalprecio+=$articulo->getPrecio()*$producto[1];
+                    $lineaf->setIdfactura($factura);
+                    $lineaf->setCantidad($producto[1]);
+                    $em->persist($lineaf);
+                    $em->flush();
+                }
+                $factura->setPreciofac($totalprecio);
+                $em->persist($factura);
+                $em->flush();        
+                
+                $response = new JsonResponse();
+                $response->setStatusCode(200);
+                $response->setData(array(
+                    'response' => 'success'
+                ));
+                return $response;
             }
-            $factura->setPreciofac($totalprecio);
-            $em->persist($factura);
-            $em->flush();
-           
-
-
             
-
-            
-            
-            // 
-            // $lineaf->setClientecliente($usu);
-            // $lineaf->setArticulos($articulo);
-
-            // //calcular el precio total
-            // $precio = $articulo->getPrecio();
-            
-
-            // $lineaf->setCantidad($cant);
-            // $em->persist($lineaf);
-            // $em->flush();
-            
-            
-            $response = new JsonResponse();
-            $response->setStatusCode(200);
-            $response->setData(array(
-                'response' => 'success'
-            ));
-            return $response;
         }
         
     }

@@ -46,3 +46,4 @@ security:
      - { path: /Perfil, roles: ROLE_CLIENTE }
      - { path: ^/Admin, roles: ROLE_ADMIN }
      - { path: ^/Carrito, roles: ROLE_CLIENTE }
+     - { path: ^/Foro, roles: ROLE_CLIENTE }

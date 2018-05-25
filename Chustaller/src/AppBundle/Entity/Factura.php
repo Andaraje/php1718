@@ -30,7 +30,7 @@ class Factura
 
     
     /**
-     * @var string
+     * @var \DateTime
      *
      * @ORM\Column(name="fecha", type="string", nullable=true)
      */
@@ -89,9 +89,11 @@ class Factura
      *
      * @return Factura
      */
-    public function setFecha($fecha)
+    public function setFecha()
     {
-        $this->fecha = $fecha;
+        
+        $date = date('y/m/d H:i:s');
+        $this->fecha = $date;
 
         return $this;
     }

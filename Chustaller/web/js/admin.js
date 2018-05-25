@@ -5,7 +5,7 @@ $(document).ready(function(){
     arrays.push([ $(this).find("td").eq(1).text(), parseInt($(this).find("td").eq(0).text()) ]);
     
 });
-  $("#resultado").DataTable({
+  $(".resultado").DataTable({
     "pageLength": 8,
     language: {
         "decimal": "",

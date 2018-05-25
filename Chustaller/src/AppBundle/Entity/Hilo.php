@@ -38,7 +38,7 @@ class Hilo
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fecha", type="datetime", nullable=false)
+     * @ORM\Column(name="fecha", type="string", nullable=true)
      */
     private $fecha;
 
@@ -133,9 +133,11 @@ class Hilo
      *
      * @return Hilo
      */
-    public function setFecha($fecha)
+    public function setFecha()
     {
-        $this->fecha = $fecha;
+        
+        $date = date('y/m/d H:i:s');
+        $this->fecha = $date;
 
         return $this;
     }

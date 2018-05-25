@@ -1,0 +1,51 @@
+{% extends 'foro/baseforo.html.twig' %}
+
+{% block body %}
+{{ parent() }}
+
+<section class="solid_banner_area">
+    <div class="container">
+            <div class="solid_banner_inner">
+                <h1>{{hilo.titulo}}</h1>
+                <ul>
+                    <li><a href="{{url('forohome')}}">Home</a></li>
+                </ul>
+            </div>
+    </div>
+</section>
+    <div class="container">
+        <table>
+            <tr class="table-danger">
+                    <td >{{hilo.clientecliente.email}} <br> {{hilo.clientecliente.poblacionpoblacion.provinciaprovincia}} <br>
+                    {{hilo.fecha}} </td>
+                    <td class="ml-2">{{hilo.mensaje}}</td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    {{ form_end(form) }}
+                </td>
+            </tr>
+        </table>
+        <table class="hilo mt-1">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+            
+            {% for r in respuestas %}
+            <tr class="mt-1">
+                    <td >{{r.clientecliente.email}} <br> {{r.clientecliente.poblacionpoblacion.provinciaprovincia}} <br>
+                    {{r.fecha}} </td>
+                    <td class="ml-2">{{r.mensaje}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+    </div>
+{% endblock %}
