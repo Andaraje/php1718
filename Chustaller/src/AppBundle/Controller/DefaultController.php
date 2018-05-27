@@ -12,7 +12,14 @@ use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
-    
+    /**
+     * @Route("^/", name="trans")
+     * 
+     */
+    public function transAction(Request $request )
+    {
+        
+    }
     
 
     
