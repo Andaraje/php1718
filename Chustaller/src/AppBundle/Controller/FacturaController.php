@@ -25,12 +25,15 @@ class FacturaController extends Controller
         {
             $em = $this->getDoctrine()->getManager();
             $dni=$this->getUser()->getUsername();// el id del usuario logeado
+            //buscar ese usuario en la tabla cliente
             $usu = $this->getDoctrine()->getRepository('AppBundle\Entity\Cliente')->findOneBy(array('email' => $dni));
             
             //datos recogidos por el ajax
             $data = json_decode($_POST['array']);
             
             if(empty($data)){
+                //caso de que el array esté vacio, no se crea la factura y se envia por ajax
+                //un error para despues imprimirlo mediante js
                 $response = new JsonResponse();
                 $response->setStatusCode(405);
                 $response->setData(array(
@@ -44,6 +47,8 @@ class FacturaController extends Controller
                 $totalprecio = 0;
                 $id = $factura->getIdfactura();
                 
+                //recorro el array procedente de ajax, y voy creando Detalles por cada articulo
+                //a la vez que los creo, voy sumando el precio final a la factura
                 foreach ($data as $producto) {
                     
                     $articulo = $this->getDoctrine()->getRepository('AppBundle\Entity\Articulos')->find($producto[0]);
@@ -59,7 +64,7 @@ class FacturaController extends Controller
                 $factura->setPreciofac($totalprecio);
                 $em->persist($factura);
                 $em->flush();        
-                
+                //Una vez guardados todos los cambios envio al js la respuesta correcta.
                 $response = new JsonResponse();
                 $response->setStatusCode(200);
                 $response->setData(array(
